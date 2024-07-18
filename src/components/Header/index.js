@@ -1,29 +1,34 @@
-// import {MdOutlineLightMode} from 'react-icons/md'
-// , MdDarkMode
-import {GiHamburgerMenu} from 'react-icons/gi'
-// import {MdDarkMode} from 'react-icons/md'
-import {LogoImg, ThemeImg, ProfileImg, LogoutBtn} from './styledComponents'
+import {BsMoon} from 'react-icons/bs'
+import {FiSun} from 'react-icons/fi'
 
-const Header = () => {
-  const word = ''
-  return (
-    <div>
-      <>
-        <LogoImg
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-          alt="logo"
-        />
-      </>
-      <div>
-        <GiHamburgerMenu />
-        <ProfileImg
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
-          alt="profile"
-        />
-        <LogoutBtn type="button">Logout</LogoutBtn>
-      </div>
-    </div>
-  )
-}
+import {
+  LogoImg,
+  ProfileImg,
+  LogoutBtn,
+  HeaderContainer,
+  HeaderProfile,
+} from './styledComponents'
+
+const Header = () => (
+  <HeaderContainer>
+    <>
+      <LogoImg
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+        alt="logo"
+      />
+    </>
+    <HeaderProfile>
+      <ProfileImg
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
+        alt="profile"
+      />
+
+      <BsMoon size={30} />
+      {/* <FiSun /> */}
+
+      <LogoutBtn type="button">Logout</LogoutBtn>
+    </HeaderProfile>
+  </HeaderContainer>
+)
 
 export default Header
