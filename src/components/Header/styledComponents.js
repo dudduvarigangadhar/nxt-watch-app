@@ -21,10 +21,15 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 15px;
   padding-left: 35px;
   padding-right: 20px;
-  margin-bottom: 15px;
+  padding-bottom: 15px;
+  //   margin-bottom: 15px;
+  //   background-color: #231f20;
+  //   background-color: ${props => props.bgColor};
+  background-color: ${props => (props.theme ? '#181818' : '#f9f9f9')};
+  //   background-color: ${props => props.bgColor};
 `
 export const HeaderProfile = styled.div`
   display: flex;
