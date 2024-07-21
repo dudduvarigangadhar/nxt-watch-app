@@ -23,6 +23,7 @@ import {
   BannerBtn,
   BannerContainer,
   CloseContainer,
+  BannerDivImg,
 } from './styledComponents'
 
 class Home extends Component {
@@ -108,18 +109,20 @@ class Home extends Component {
                 </SideBar>
                 <div>
                   <BannerContainer>
-                    <BannerImg
-                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                      alt="nxt watch logo"
-                    />
-                    <BannerHeading>
-                      Buy Nxt Watch Premium prepaid plans with UPI
-                    </BannerHeading>
-                    <BannerBtn type="button">GET IT NOW</BannerBtn>
+                    <div>
+                      <BannerImg
+                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                        alt="nxt watch logo"
+                      />
+                      <BannerHeading>
+                        Buy Nxt Watch Premium prepaid plans with UPI
+                      </BannerHeading>
+                      <BannerBtn type="button">GET IT NOW</BannerBtn>
+                    </div>
+                    <CloseContainer>
+                      <IoIosClose size={30} />
+                    </CloseContainer>
                   </BannerContainer>
-                  <CloseContainer>
-                    <IoIosClose />
-                  </CloseContainer>
                 </div>
               </HomeDivContainer>
             </HomeContainer>
