@@ -1,22 +1,17 @@
+import Cookies from 'js-cookie'
 import {Component} from 'react'
-import {AiFillHome, AiFillFire} from 'react-icons/ai'
-// import {HiFire} from 'react-icons/hi'
-import {SiYoutubegaming} from 'react-icons/si'
-import {MdPlaylistAdd} from 'react-icons/md'
-import {IoIosClose} from 'react-icons/io'
+
+import Loader from 'react-loader-spinner/dist/loader'
+
+import {IoMdSearch, IoIosClose} from 'react-icons/io'
+// import {} from 'react-icons/io'
+import SideBar from '../SideBar'
+import HomeVideo from '../HomeVideo'
 import Header from '../Header'
 import ThemeContext from '../../Context/ThemeContext'
-
 import {
   HomeContainer,
   UnorderedList,
-  SideBar,
-  ContactContainer,
-  ImageLogo,
-  Recommendations,
-  ListItem,
-  ContactUsHeading,
-  ListPara,
   HomeDivContainer,
   BannerImg,
   BannerHeading,
@@ -24,12 +19,108 @@ import {
   BannerContainer,
   CloseContainer,
   BannerDivImg,
+  SearchInput,
+  SearchContainer,
+  SearchButton,
+  HomeVideosContainer,
+  UnOrderList,
 } from './styledComponents'
 
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inProgress: 'INPROGRESS',
+}
+
 class Home extends Component {
-  //   state = {}
+  state = {
+    homeVideos: [],
+    apiStatus: apiStatusConstants.initial,
+  }
+
+  componentDidMount() {
+    this.renderHomeVideos()
+  }
+
+  renderHomeVideos = async () => {
+    this.setState({
+      apiStatus: apiStatusConstants.inProgress,
+    })
+
+    const jwtToken = Cookies.get('jwt_token')
+    // console.log(jwtToken)
+    const apiUrl = 'https://apis.ccbp.in/videos/all?search='
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(apiUrl, options)
+    if (response.ok === true) {
+      const fetchedData = await response.json()
+      const updatedData = fetchedData.videos.map(eachVideo => ({
+        id: eachVideo.id,
+        publishedAt: eachVideo.published_at,
+        thumbnailUrl: eachVideo.thumbnail_url,
+        title: eachVideo.title,
+        viewCount: eachVideo.view_count,
+        name: eachVideo.channel.name,
+        profileImageUrl: eachVideo.channel.profile_image_url,
+      }))
+
+      this.setState({
+        homeVideos: updatedData,
+        apiStatus: apiStatusConstants.success,
+      })
+    }
+    if (response.status === 401) {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
+    }
+  }
+
+  renderFailureView = () => {}
+
+  //   renderLoadingView = () => (
+  //     <div className="loader-container">
+  //       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+  //     </div>
+  //   )
+
+  renderLoadingView = () => {}
+
+  renderSuccessView = () => {
+    const {homeVideos} = this.state
+    return (
+      <UnOrderList>
+        {homeVideos.map(eachVideo => (
+          <HomeVideo details={eachVideo} key={eachVideo.id} />
+        ))}
+      </UnOrderList>
+    )
+  }
+
+  renderViewsList = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderSuccessView()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
+    }
+  }
 
   render() {
+    const {homeVideos} = this.state
+    // const renderMethod = this.renderViewsList()
+    console.log(homeVideos)
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -39,74 +130,10 @@ class Home extends Component {
 
           /* const bgColor = isDark ? '#181818' : '#f9f9f9' */
 
-          const onChangeHomeRoute = () => {
-            activeTabId('HOME')
-            console.log('Home')
-          }
-
-          const onChangeTrendingRoute = () => {
-            activeTabId('Trending')
-            console.log('trending')
-          }
-
-          const onChangeGamingRoute = () => {
-            activeTabId('Gaming')
-            console.log('gaming')
-          }
-
-          const onChangeSavedVideosRoute = () => {
-            activeTabId('SavedVideos')
-
-            console.log('saved')
-          }
-
           return (
             <HomeContainer data-testid="home">
               <Header />
               <HomeDivContainer>
-                <SideBar>
-                  <UnorderedList>
-                    <ListItem id="HOME" onClick={onChangeHomeRoute}>
-                      <AiFillHome size={20} />
-                      <ListPara>Home</ListPara>
-                    </ListItem>
-                    <ListItem id="Trending" onClick={onChangeTrendingRoute}>
-                      <AiFillFire size={20} />
-                      <ListPara>Trending</ListPara>
-                    </ListItem>
-                    <ListItem id="Gaming" onClick={onChangeGamingRoute}>
-                      <SiYoutubegaming size={20} />
-                      <ListPara>Gaming</ListPara>
-                    </ListItem>
-                    <ListItem
-                      id="Saved videos"
-                      onClick={onChangeSavedVideosRoute}
-                    >
-                      <MdPlaylistAdd size={20} />
-                      <ListPara> Saved videos </ListPara>
-                    </ListItem>
-                  </UnorderedList>
-                  <ContactContainer>
-                    <ContactUsHeading>CONTACT US</ContactUsHeading>
-                    <div>
-                      <ImageLogo
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
-                        alt="facebook logo"
-                      />
-                      <ImageLogo
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
-                        alt="twitter logo"
-                      />
-                      <ImageLogo
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
-                        alt="linked in logo"
-                      />
-                    </div>
-                    <Recommendations>
-                      Enjoy! Now to see your channels and recommendations!
-                    </Recommendations>
-                  </ContactContainer>
-                </SideBar>
                 <div>
                   <BannerContainer>
                     <div>
@@ -123,6 +150,15 @@ class Home extends Component {
                       <IoIosClose size={30} />
                     </CloseContainer>
                   </BannerContainer>
+                  <HomeVideosContainer>
+                    <SearchContainer>
+                      <SearchInput type="text" placeholder="Search" />
+                      <SearchButton data-testid="searchButton">
+                        <IoMdSearch size={20} />
+                      </SearchButton>
+                    </SearchContainer>
+                    {this.renderViewsList()}
+                  </HomeVideosContainer>
                 </div>
               </HomeDivContainer>
             </HomeContainer>

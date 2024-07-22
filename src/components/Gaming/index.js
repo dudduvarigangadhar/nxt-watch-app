@@ -1,17 +1,17 @@
 import {Component} from 'react'
 import Header from '../Header'
 
-class Trending extends Component {
+class Gaming extends Component {
   state = {}
 
   render() {
     return (
       <div>
         <Header />
-        <h1>Trending</h1>
+        <h1>Gaming</h1>
       </div>
     )
   }
 }
 
-export default Trending
+export default Gaming
