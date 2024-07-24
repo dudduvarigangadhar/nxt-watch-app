@@ -14,7 +14,7 @@ import {
   Published,
   ViewCount,
   CategoryName,
-  videosId,
+  VideosId,
 } from './styledComponents'
 
 const HomeVideo = props => {
@@ -32,7 +32,7 @@ const HomeVideo = props => {
   const postedOn = date[1]
   return (
     <Link to="/id" className="link">
-      <videosId>
+      <VideosId>
         <ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
         <VideoDetails>
           <ProfileImg src={profileImageUrl} alt="profile" />
@@ -45,7 +45,7 @@ const HomeVideo = props => {
             </PublishedDiv>
           </VideoTitleContainer>
         </VideoDetails>
-      </videosId>
+      </VideosId>
     </Link>
   )
 }

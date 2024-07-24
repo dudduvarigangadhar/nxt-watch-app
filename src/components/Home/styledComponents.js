@@ -5,6 +5,7 @@ export const HomeContainer = styled.div``
 export const HomeDivContainer = styled.div`
   display: flex;
   flex-direction: row;
+  background-color: ${props => props.theme};
 `
 export const BannerImg = styled.img`
   height: 40px;

@@ -7,11 +7,12 @@ import SavedVideos from './components/SavedVideos'
 import NotFound from './components/NotFound'
 import Trending from './components/Trending'
 import ThemeContext from './Context/ThemeContext'
+import ProtectedRoute from './components/ProtectedRoute'
 
 import './App.css'
 
 class App extends Component {
-  state = {isDark: false, activeId: ''}
+  state = {isDark: false, activeId: 'HOME'}
 
   changeTheme = () => {
     this.setState(prevState => ({isDark: !prevState.isDark}))
@@ -23,24 +24,24 @@ class App extends Component {
 
   render() {
     const {isDark, activeId} = this.state
-    console.log(isDark)
+    // console.log(isDark)
     return (
       <ThemeContext.Provider
         value={{
           isDark,
           activeId,
-          activeTabId: this.activeTabId,
+          activeTabItem: this.activeTabId,
           changeTheme: this.changeTheme,
         }}
       >
         <Switch>
           <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/trending" component={Trending} />
-          <Route exact path="/gaming" component={Gaming} />
-          <Route path="/savedvideos" component={SavedVideos} />
-          {/* <Route exact path="not-found" component={NotFound} /> */}
-          {/* <Redirect to="/not-found" /> */}
+          <ProtectedRoute exact path="/trending" component={Trending} />
+          <ProtectedRoute exact path="/gaming" component={Gaming} />
+          <ProtectedRoute path="/savedVideos" component={SavedVideos} />
+          <Route exact path="not-found" component={NotFound} />
+          <Redirect to="/not-found" />
         </Switch>
       </ThemeContext.Provider>
     )

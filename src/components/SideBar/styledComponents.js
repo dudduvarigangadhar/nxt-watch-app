@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const ImageLogo = styled.img`
   height: 35px;
@@ -27,9 +28,10 @@ export const ListItem = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color: ${props => props.isActive};
 `
 export const SideBarCon = styled.div`
-  background-color: #181818;
+  background-color: ${props => props.theme};
   height: 91.7vh;
   padding-left: 20px;
   max-width: 15%;
@@ -43,3 +45,4 @@ export const UnorderedList = styled.ul`
   list-style-type: none;
   padding: 0px;
 `
+export const NavLink = styled(Link)``

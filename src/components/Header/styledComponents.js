@@ -27,9 +27,8 @@ export const HeaderContainer = styled.div`
   padding-bottom: 15px;
   //   margin-bottom: 15px;
   //   background-color: #231f20;
-  //   background-color: ${props => props.bgColor};
-  background-color: ${props => (props.theme ? '#181818' : '#f9f9f9')};
-  //   background-color: ${props => props.bgColor};
+  background-color: ${props => props.theme};
+  //   background-color: ${props => (props.theme ? '#181818' : '#f9f9f9')};
 `
 export const HeaderProfile = styled.div`
   display: flex;

@@ -11,7 +11,6 @@ import Header from '../Header'
 import ThemeContext from '../../Context/ThemeContext'
 import {
   HomeContainer,
-  UnorderedList,
   HomeDivContainer,
   BannerImg,
   BannerHeading,
@@ -120,20 +119,21 @@ class Home extends Component {
   render() {
     const {homeVideos} = this.state
     // const renderMethod = this.renderViewsList()
-    console.log(homeVideos)
+    // console.log(homeVideos)
     return (
       <ThemeContext.Consumer>
         {value => {
           const {isDark, activeId, activeTabId} = value
 
-          /* const textColor = isDark ? '#f9f9f9' : ' #7e858e' */
+          const textColor = isDark ? '#f9f9f9' : ' #181818'
 
-          /* const bgColor = isDark ? '#181818' : '#f9f9f9' */
-
+          const bgColor = isDark ? '#181818' : '#f9f9f9'
+          console.log('Home', isDark)
           return (
-            <HomeContainer data-testid="home">
+            <HomeContainer>
               <Header />
-              <HomeDivContainer>
+              <HomeDivContainer theme={bgColor}>
+                <SideBar />
                 <div>
                   <BannerContainer>
                     <div>

@@ -61,6 +61,6 @@ export const PublishedDiv = styled.div`
   flex-direction: row;
   text-decoration: none;
 `
-export const videosId = styled.div`
+export const VideosId = styled.div`
   //   margin-bottom: 20px;
 `
