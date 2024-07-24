@@ -25,6 +25,8 @@ export const BannerBtn = styled.button`
   width: 100px;
   font-weight: bold;
   cursor: pointer;
+  //   padding-bottom: 20px;
+  //   margin-bottom: 30px;
 `
 export const BannerContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
@@ -32,10 +34,10 @@ export const BannerContainer = styled.div`
   //   background-position-x: right;
   //   background-position-y: center;
   width: 85vw;
-  height: 200px;
-  padding-left: 50px;
+  height: 230px;
+  padding-left: 30px;
   padding-top: 30px;
-  padding-bottom: 30px;
+  //   padding-bottom: 30px;
   display: flex;
   flex-direction: row;
   //   justify-content: space-between;
@@ -46,6 +48,9 @@ export const CloseContainer = styled.div`
   //   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   //   background-size: cover;
   //   height: 30%;
+`
+export const BannerOfferContainer = styled.div`
+  padding-bottom: 30px;
 `
 
 export const BannerDivImg = styled.img`

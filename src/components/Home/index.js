@@ -22,6 +22,7 @@ import {
   SearchContainer,
   SearchButton,
   HomeVideosContainer,
+  BannerOfferContainer,
   UnOrderList,
 } from './styledComponents'
 
@@ -136,7 +137,7 @@ class Home extends Component {
                 <SideBar />
                 <div>
                   <BannerContainer>
-                    <div>
+                    <BannerOfferContainer>
                       <BannerImg
                         src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
                         alt="nxt watch logo"
@@ -145,7 +146,7 @@ class Home extends Component {
                         Buy Nxt Watch Premium prepaid plans with UPI
                       </BannerHeading>
                       <BannerBtn type="button">GET IT NOW</BannerBtn>
-                    </div>
+                    </BannerOfferContainer>
                     <CloseContainer>
                       <IoIosClose size={30} />
                     </CloseContainer>

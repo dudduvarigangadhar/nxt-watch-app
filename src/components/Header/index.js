@@ -21,7 +21,7 @@ const Header = () => (
 
       const textColor = isDark ? '#f9f9f9' : ' #181818'
 
-      const bgColor = isDark ? '#181818' : '#f9f9f9'
+      const bgColor = isDark ? '#212121' : '#f9f9f9'
 
       console.log('Header', isDark)
 

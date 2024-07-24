@@ -37,50 +37,46 @@ const SideBar = () => (
         activeTabItem('SAVEDVIDEOS')
       }
 
-      const bgColor = isDark ? '#181818' : '#f9f9f9'
-
+      const bgColor = isDark ? '#212121' : '#f9f9f9'
+      const textColor = isDark ? '#f1f5f9' : '#424242'
       return (
         <SideBarCon theme={bgColor}>
           <UnorderedList>
             <ListItem
               onClick={onChangeHomeRoute}
-              isActive={activeId === 'HOME' ? '#f1f5f9' : 'transparent'}
+              isActive={activeId === 'HOME' ? '#d7dfe9' : '#383838'}
             >
               <NavLink to="/">
-                <AiFillHome size={20} />
+                <AiFillHome size={20} color={isDark ? '#ff0b37' : '#909090'} />
+                <ListPara color={textColor}>Home</ListPara>
               </NavLink>
-
-              <ListPara>Home</ListPara>
             </ListItem>
             <ListItem
               isActive={activeId === 'TRENDING' ? '#f1f5f9' : 'transparent'}
               onClick={onChangeTrendingRoute}
             >
               <NavLink to="/trending">
-                <AiFillFire size={20} />
+                <AiFillFire size={20} color="#ff0000" />
+                <ListPara color={textColor}>Trending</ListPara>
               </NavLink>
-
-              <ListPara>Trending</ListPara>
             </ListItem>
             <ListItem
               isActive={activeId === 'GAMING' ? '#f1f5f9' : 'transparent'}
               onClick={onChangeGamingRoute}
             >
               <NavLink to="/gaming">
-                <SiYoutubegaming size={20} />
+                <SiYoutubegaming size={20} color="#ff0000" />
+                <ListPara color={textColor}>Gaming</ListPara>
               </NavLink>
-
-              <ListPara>Gaming</ListPara>
             </ListItem>
             <ListItem
               isActive={activeId === 'SAVEDVIDEOS' ? '#f1f5f9' : 'transparent'}
               onClick={onChangeSavedVideosRoute}
             >
               <NavLink to="savedVideos">
-                <MdPlaylistAdd size={20} />
+                <MdPlaylistAdd size={20} color="#ff0000" />
+                <ListPara color={textColor}> Saved videos </ListPara>
               </NavLink>
-
-              <ListPara> Saved videos </ListPara>
             </ListItem>
           </UnorderedList>
           <ContactContainer>
