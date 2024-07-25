@@ -60,15 +60,28 @@ export const BannerDivImg = styled.img`
 export const SearchInput = styled.input`
   height: 30px;
   width: 300px;
+  outline: none;
+  padding-left: 10px;
+  background-color: ${props => props.inColor};
+  border: 1px solid ${props => props.borderColor};
+  border-right: none;
+  //   border: 1px solid #cccccc;
 `
 export const SearchContainer = styled.div`
   display: flex;
   flex-direction: row;
+  //   border: 1px solid #cccccc;
+
   align-items: center;
 `
 export const SearchButton = styled.button`
   height: 30px;
   width: 70px;
+  background-color: ${props => props.btnColor};
+  text-align: center;
+  //   border: 1px solid #cccccc;
+  border: 1px solid ${props => props.borderColor};
+  padding-top: 4px;
 `
 
 export const HomeVideosContainer = styled.div`
@@ -78,5 +91,6 @@ export const UnOrderList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  //   max-width: 100px;
   margin-top: 30px;
 `

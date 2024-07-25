@@ -10,10 +10,12 @@ export const ProfileImg = styled.img`
 `
 export const Title = styled.p`
   font-family: 'Roboto';
-  width: 250px;
+  width: 230px;
   margin: 0;
   text-decoration: none;
   margin-bottom: 8px;
+  color: ${props => props.color};
+  font-weight: 420;
   font-size: 15px;
 `
 
@@ -33,12 +35,15 @@ export const VideoTitleContainer = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
+  height: 130px;
 `
 export const CategoryName = styled.p`
   font-family: 'Roboto';
   margin: 0;
   font-size: 14px;
+  color: ${props => props.color};
   text-decoration: none;
 `
 
@@ -47,6 +52,7 @@ export const Published = styled.p`
   margin: 0;
   font-size: 15px;
   text-decoration: none;
+  color: ${props => props.color};
 `
 
 export const ViewCount = styled.p`
@@ -54,6 +60,7 @@ export const ViewCount = styled.p`
   margin: 0;
   margin-right: 7px;
   font-size: 15px;
+  color: ${props => props.color};
   text-decoration: none;
 `
 export const PublishedDiv = styled.div`
@@ -63,4 +70,7 @@ export const PublishedDiv = styled.div`
 `
 export const VideosId = styled.div`
   //   margin-bottom: 20px;
+  //   margin-right: 20px;
+  margin-right: 10px;
+  //   height: 400px;
 `

@@ -11,11 +11,20 @@ export const LogoutBtn = styled.button`
   width: 85px;
   background-color: transparent;
   font-family: 'Roboto';
-  border: 2px solid #3b82f6;
-  color: #3b82f6;
+  border: 2px solid ${props => props.color};
+  color: ${props => props.color};
   font-weight: 600;
+  cursor: pointer;
+  border-radius: 3px;
   font-size: 15px;
 `
+
+export const LogoBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`
+
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;

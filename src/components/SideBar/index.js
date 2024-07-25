@@ -13,6 +13,7 @@ import {
   Recommendations,
   SideBarCon,
   NavLink,
+  ImgCon,
   ListPara,
 } from './styledComponents'
 
@@ -39,49 +40,89 @@ const SideBar = () => (
 
       const bgColor = isDark ? '#212121' : '#f9f9f9'
       const textColor = isDark ? '#f1f5f9' : '#424242'
+      const listLightColor = isDark ? '#383838' : '#cbd5e1'
       return (
         <SideBarCon theme={bgColor}>
           <UnorderedList>
             <ListItem
               onClick={onChangeHomeRoute}
-              isActive={activeId === 'HOME' ? '#d7dfe9' : '#383838'}
+              isActive={activeId === 'HOME' ? listLightColor : ''}
+              bgColor={bgColor}
             >
               <NavLink to="/">
-                <AiFillHome size={20} color={isDark ? '#ff0b37' : '#909090'} />
-                <ListPara color={textColor}>Home</ListPara>
+                <AiFillHome
+                  size={20}
+                  color={activeId === 'HOME' ? '#ff0b37' : '#909090'}
+                />
+                <ListPara
+                  color={textColor}
+                  font={activeId === 'HOME' ? 'bold' : 'normal'}
+                >
+                  Home
+                </ListPara>
               </NavLink>
             </ListItem>
             <ListItem
-              isActive={activeId === 'TRENDING' ? '#f1f5f9' : 'transparent'}
+              isActive={activeId === 'TRENDING' ? listLightColor : ''}
               onClick={onChangeTrendingRoute}
+              bgColor={bgColor}
             >
               <NavLink to="/trending">
-                <AiFillFire size={20} color="#ff0000" />
-                <ListPara color={textColor}>Trending</ListPara>
+                <AiFillFire
+                  size={20}
+                  color={activeId === 'TRENDING' ? '#ff0b37' : '#909090'}
+                />
+                <ListPara
+                  color={textColor}
+                  font={activeId === 'TRENDING' ? 'bold' : 'normal'}
+                >
+                  Trending
+                </ListPara>
               </NavLink>
             </ListItem>
             <ListItem
-              isActive={activeId === 'GAMING' ? '#f1f5f9' : 'transparent'}
+              isActive={activeId === 'GAMING' ? listLightColor : ''}
               onClick={onChangeGamingRoute}
+              bgColor={bgColor}
             >
               <NavLink to="/gaming">
-                <SiYoutubegaming size={20} color="#ff0000" />
-                <ListPara color={textColor}>Gaming</ListPara>
+                <SiYoutubegaming
+                  size={20}
+                  color={activeId === 'GAMING' ? '#ff0b37' : '#909090'}
+                />
+                <ListPara
+                  color={textColor}
+                  font={activeId === 'GAMING' ? 'bold' : 'normal'}
+                >
+                  Gaming
+                </ListPara>
               </NavLink>
             </ListItem>
             <ListItem
-              isActive={activeId === 'SAVEDVIDEOS' ? '#f1f5f9' : 'transparent'}
+              isActive={activeId === 'SAVEDVIDEOS' ? listLightColor : ''}
               onClick={onChangeSavedVideosRoute}
+              bgColor={bgColor}
             >
               <NavLink to="savedVideos">
-                <MdPlaylistAdd size={20} color="#ff0000" />
-                <ListPara color={textColor}> Saved videos </ListPara>
+                <MdPlaylistAdd
+                  size={20}
+                  color={activeId === 'SAVEDVIDEOS' ? '#ff0b37' : '#909090'}
+                />
+                <ListPara
+                  color={textColor}
+                  font={activeId === 'SAVEDVIDEOS' ? 'bold' : 'normal'}
+                >
+                  {' '}
+                  Saved videos{' '}
+                </ListPara>
               </NavLink>
             </ListItem>
           </UnorderedList>
           <ContactContainer>
-            <ContactUsHeading>CONTACT US</ContactUsHeading>
-            <div>
+            <ContactUsHeading themeText={isDark ? '#f1f5f9' : '#1e293b'}>
+              CONTACT US
+            </ContactUsHeading>
+            <ImgCon>
               <ImageLogo
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
                 alt="facebook logo"
@@ -94,8 +135,8 @@ const SideBar = () => (
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
                 alt="linked in logo"
               />
-            </div>
-            <Recommendations>
+            </ImgCon>
+            <Recommendations themeText={isDark ? '#f1f5f9' : '#1e293b'}>
               Enjoy! Now to see your channels and recommendations!
             </Recommendations>
           </ContactContainer>

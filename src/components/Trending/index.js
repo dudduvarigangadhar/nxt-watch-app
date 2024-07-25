@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Header from '../Header'
+import SideBar from '../SideBar'
 
 class Trending extends Component {
   state = {}
@@ -8,7 +9,7 @@ class Trending extends Component {
     return (
       <div>
         <Header />
-        <h1>Trending</h1>
+        <SideBar />
       </div>
     )
   }

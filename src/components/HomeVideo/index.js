@@ -1,8 +1,7 @@
-import './index.css'
-
 import {Link} from 'react-router-dom'
-
 import {formatDistanceToNow} from 'date-fns'
+import ThemeContext from '../../Context/ThemeContext'
+import './index.css'
 
 import {
   ThumbnailImg,
@@ -17,37 +16,52 @@ import {
   VideosId,
 } from './styledComponents'
 
-const HomeVideo = props => {
-  const {details} = props
-  const {
-    thumbnailUrl,
-    id,
-    profileImageUrl,
-    name,
-    publishedAt,
-    viewCount,
-    title,
-  } = details
-  const date = String(formatDistanceToNow(new Date(publishedAt))).split(' ')
-  const postedOn = date[1]
-  return (
-    <Link to="/id" className="link">
-      <VideosId>
-        <ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
-        <VideoDetails>
-          <ProfileImg src={profileImageUrl} alt="profile" />
-          <VideoTitleContainer>
-            <Title>{title}</Title>
-            <CategoryName>{name}</CategoryName>
-            <PublishedDiv>
-              <ViewCount>{viewCount} views</ViewCount>
-              <Published>. {postedOn} years ago</Published>
-            </PublishedDiv>
-          </VideoTitleContainer>
-        </VideoDetails>
-      </VideosId>
-    </Link>
-  )
-}
+const HomeVideo = props => (
+  <ThemeContext.Consumer>
+    {value => {
+      const {isDark} = value
+      const {details} = props
+      const {
+        thumbnailUrl,
+        id,
+        profileImageUrl,
+        name,
+        publishedAt,
+        viewCount,
+        title,
+      } = details
+      const date = String(formatDistanceToNow(new Date(publishedAt))).split(' ')
+      const postedOn = date[1]
+      const VideoTextColor = isDark ? '#f4f4f4' : '#475569'
+      console.log(isDark)
+      const ViewTextColor = isDark ? '#475569' : '#475569'
+
+      return (
+        <Link to="/id" className="link">
+          <VideosId>
+            <ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
+            <VideoDetails>
+              <ProfileImg src={profileImageUrl} alt="profile" />
+              <VideoTitleContainer>
+                <Title color={VideoTextColor}>{title}</Title>
+                <div>
+                  <CategoryName color={ViewTextColor}>{name}</CategoryName>
+                  <PublishedDiv>
+                    <ViewCount color={ViewTextColor}>
+                      {viewCount} views
+                    </ViewCount>
+                    <Published color={ViewTextColor}>
+                      . {postedOn} years ago
+                    </Published>
+                  </PublishedDiv>
+                </div>
+              </VideoTitleContainer>
+            </VideoDetails>
+          </VideosId>
+        </Link>
+      )
+    }}
+  </ThemeContext.Consumer>
+)
 
 export default HomeVideo

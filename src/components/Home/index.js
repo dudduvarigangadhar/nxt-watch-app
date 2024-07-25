@@ -153,9 +153,18 @@ class Home extends Component {
                   </BannerContainer>
                   <HomeVideosContainer>
                     <SearchContainer>
-                      <SearchInput type="text" placeholder="Search" />
-                      <SearchButton data-testid="searchButton">
-                        <IoMdSearch size={20} />
+                      <SearchInput
+                        type="text"
+                        placeholder="Search"
+                        inColor={bgColor}
+                        borderColor={isDark ? '#7e858e' : '#ebebeb'}
+                      />
+                      <SearchButton
+                        data-testid="searchButton"
+                        btnColor={isDark ? '#383838' : '#f4f4f4'}
+                        borderColor={isDark ? '#7e858e' : '#ebebeb'}
+                      >
+                        <IoMdSearch size={20} color="#616e7c" />
                       </SearchButton>
                     </SearchContainer>
                     {this.renderViewsList()}

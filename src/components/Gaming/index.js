@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Header from '../Header'
+import SideBar from '../SideBar'
 
 class Gaming extends Component {
   state = {}
@@ -8,7 +9,9 @@ class Gaming extends Component {
     return (
       <div>
         <Header />
-        <h1>Gaming</h1>
+        <div>
+          <SideBar />
+        </div>
       </div>
     )
   }
