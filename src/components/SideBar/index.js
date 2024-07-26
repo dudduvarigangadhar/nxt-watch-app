@@ -38,7 +38,7 @@ const SideBar = () => (
         activeTabItem('SAVEDVIDEOS')
       }
 
-      const bgColor = isDark ? '#212121' : '#f9f9f9'
+      const bgColor = isDark ? '#212121' : '#ffffff'
       const textColor = isDark ? '#f1f5f9' : '#424242'
       const listLightColor = isDark ? '#383838' : '#cbd5e1'
       return (

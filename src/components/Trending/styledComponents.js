@@ -27,3 +27,16 @@ export const TrendingHeading = styled.h1`
   color: ${props => props.color};
   margin-left: 20px;
 `
+export const TrendingMidCon = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+export const TrendingVideosList = styled.div`
+  //   padding-left: 70px;
+  margin-top: 60px;
+`
+export const TrendingViewContent = styled.div`
+  background-color: ${props => props.color};
+  padding-left: 60px;
+`

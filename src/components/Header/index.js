@@ -24,7 +24,7 @@ const Header = props => (
 
       const textColor = isDark ? '#f9f9f9' : ' #181818'
 
-      const bgColor = isDark ? '#212121' : '#f9f9f9'
+      const bgColor = isDark ? '#212121' : '#ffffff'
 
       const onLogout = () => {
         const {history} = props

@@ -13,6 +13,9 @@ import {
   FireLogoContainer,
   TrendingBlockContainer,
   TrendingHeading,
+  TrendingMidCon,
+  TrendingVideosList,
+  TrendingViewContent,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -81,11 +84,11 @@ class Trending extends Component {
     const {trendingVideos} = this.state
     console.log(trendingVideos)
     return (
-      <div>
+      <TrendingVideosList>
         {trendingVideos.map(eachVideo => (
           <TrendingVideo details={eachVideo} key={eachVideo.id} />
         ))}
-      </div>
+      </TrendingVideosList>
     )
   }
 
@@ -113,18 +116,23 @@ class Trending extends Component {
           const logoCon = isDark ? '#000000' : '#d7dfe9'
           const heading = isDark ? '#f1f5f9' : '#1e293b'
           const topContainer = isDark ? '#181818' : '#ebebeb'
+          const bgColor = isDark ? '#000000' : '#f9f9f9'
           return (
             <div>
               <Header />
               <TrendingSideBarContainer>
                 <SideBar />
-                <TrendingBlockContainer color={topContainer}>
-                  <FireLogoContainer color={logoCon}>
-                    <AiFillFire color="#ff0b37" size={30} />
-                  </FireLogoContainer>
-                  <TrendingHeading color={heading}>Trending</TrendingHeading>
-                </TrendingBlockContainer>
-                <div>{this.renderTrendingViews()}</div>
+                <TrendingMidCon>
+                  <TrendingBlockContainer color={topContainer}>
+                    <FireLogoContainer color={logoCon}>
+                      <AiFillFire color="#ff0b37" size={30} />
+                    </FireLogoContainer>
+                    <TrendingHeading color={heading}>Trending</TrendingHeading>
+                  </TrendingBlockContainer>
+                  <TrendingViewContent color={bgColor}>
+                    {this.renderTrendingViews()}
+                  </TrendingViewContent>
+                </TrendingMidCon>
               </TrendingSideBarContainer>
             </div>
           )
