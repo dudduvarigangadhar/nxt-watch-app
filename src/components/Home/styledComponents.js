@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.div``
+export const HomeContainer = styled.div`
+  height: 100vh;
+  background-size: cover;
+  width: 100vw;
+`
 
 export const HomeDivContainer = styled.div`
   display: flex;
@@ -93,4 +97,41 @@ export const UnOrderList = styled.div`
   flex-wrap: wrap;
   //   max-width: 100px;
   margin-top: 30px;
+`
+export const HomeLoadingView = styled.div``
+
+export const FailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  //   height: 300px;
+  line-height: 0.3;
+`
+
+export const FailureHeading = styled.h1`
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: ${props => props.color};
+`
+
+export const FailurePara = styled.p`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+`
+
+export const RetryButton = styled.button`
+  margin-top: 10px;
+  width: 80px;
+  height: 35px;
+  font-family: 'Roboto';
+  color: #f1f5f9;
+  border-radius: 5px;
+  border: none;
+  background-color: #4f46e5;
+`
+
+export const FailureImg = styled.img`
+  height: 300px;
 `

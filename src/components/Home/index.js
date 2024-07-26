@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import {Component} from 'react'
 
-import Loader from 'react-loader-spinner/dist/loader'
+import Loader from 'react-loader-spinner'
 
 import {IoMdSearch, IoIosClose} from 'react-icons/io'
 // import {} from 'react-icons/io'
@@ -24,6 +24,12 @@ import {
   HomeVideosContainer,
   BannerOfferContainer,
   UnOrderList,
+  HomeLoadingView,
+  FailureContainer,
+  FailureHeading,
+  FailurePara,
+  FailureImg,
+  RetryButton,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -58,6 +64,7 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
+    console.log(response.status)
     if (response.ok === true) {
       const fetchedData = await response.json()
       const updatedData = fetchedData.videos.map(eachVideo => ({
@@ -74,26 +81,57 @@ class Home extends Component {
         homeVideos: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 401) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
     }
   }
 
-  renderFailureView = () => {}
+  renderFailureView = isDark => {
+    const heading = isDark ? '#f9f9f9' : '#1e293b'
+    const paragraph = isDark ? '#475569' : '#616e7c'
+    return (
+      <>
+        <FailureContainer>
+          {isDark ? (
+            <FailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              alt="failure view"
+            />
+          ) : (
+            <FailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+              alt="failure view"
+            />
+          )}
+          <FailureHeading color={heading}>
+            Oops! Something Went Wrong
+          </FailureHeading>
+          <FailurePara color={paragraph}>
+            We are having some trouble to complete your request.
+          </FailurePara>
+          <FailurePara color={paragraph}>Please try again.</FailurePara>
+          <RetryButton type="button">Retry</RetryButton>
+        </FailureContainer>
+      </>
+    )
+  }
 
-  //   renderLoadingView = () => (
-  //     <div className="loader-container">
-  //       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-  //     </div>
-  //   )
+  renderLoadingView = () => {
+    console.log('loading view')
+    return (
+      <HomeLoadingView className="loader-container">
+        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+      </HomeLoadingView>
+    )
+  }
 
-  renderLoadingView = () => {}
+  //   renderLoadingView = () => {}
 
   renderSuccessView = () => {
     const {homeVideos} = this.state
+    console.log('success view')
     return (
       <UnOrderList>
         {homeVideos.map(eachVideo => (
@@ -103,13 +141,14 @@ class Home extends Component {
     )
   }
 
-  renderViewsList = () => {
+  renderViewsList = isDark => {
     const {apiStatus} = this.state
+    // const theme = props
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSuccessView()
       case apiStatusConstants.failure:
-        return this.renderFailureView()
+        return this.renderFailureView(isDark)
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:
@@ -167,7 +206,7 @@ class Home extends Component {
                         <IoMdSearch size={20} color="#616e7c" />
                       </SearchButton>
                     </SearchContainer>
-                    {this.renderViewsList()}
+                    {this.renderViewsList(isDark)}
                   </HomeVideosContainer>
                 </div>
               </HomeDivContainer>

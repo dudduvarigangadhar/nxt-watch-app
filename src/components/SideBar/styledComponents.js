@@ -45,6 +45,7 @@ export const ListItem = styled.li`
   flex-direction: row;
   align-items: center;
   padding-left: 20px;
+  width: 227px;
   background-color: ${props => props.isActive};
 `
 export const SideBarCon = styled.div`
