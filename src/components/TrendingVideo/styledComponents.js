@@ -8,6 +8,9 @@ export const ViewsPara = styled.p`
   font-family: 'Roboto';
   //   line-height: 0.3;
   margin: 0px;
+  color: ${props => props.color};
+  font-weight: 450;
+  margin-right: 10px;
 `
 export const Heading = styled.p`
   font-family: 'Roboto';
@@ -16,6 +19,7 @@ export const Heading = styled.p`
   font-weight: bold;
   margin-top: 0px;
   padding-top: 5px;
+  color: ${props => props.color};
 `
 export const ThumbImage = styled.img`
   height: 200px;
@@ -26,9 +30,10 @@ export const VideoCardContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-bottom: 70px;
+  cursor: pointer;
 `
-export const videoViewsCon = styled.div`
-  line-height: 0.5;
+export const VideoViewsCon = styled.div`
+  line-height: 1.3;
 `
 
 export const VideoContent = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+// import {FailureContainer} from '../Home/styledComponents'
 
 export const TrendingSideBarContainer = styled.div`
   display: flex;
@@ -39,4 +40,40 @@ export const TrendingVideosList = styled.div`
 export const TrendingViewContent = styled.div`
   background-color: ${props => props.color};
   padding-left: 60px;
+  height: 100%;
+`
+export const TrendingFailureContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  //   height: 300px;
+  line-height: 0.3;
+`
+
+export const TrendingFailureImg = styled.img`
+  height: 300px;
+`
+
+export const TrendingFailureHeading = styled.p`
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: ${props => props.color};
+`
+
+export const TrendingFailurePara = styled.p`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+`
+
+export const TrendingRetryButton = styled.button`
+  margin-top: 10px;
+  width: 80px;
+  height: 35px;
+  font-family: 'Roboto';
+  color: #f1f5f9;
+  border-radius: 5px;
+  border: none;
+  background-color: #4f46e5;
 `

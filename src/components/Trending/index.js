@@ -16,6 +16,11 @@ import {
   TrendingMidCon,
   TrendingVideosList,
   TrendingViewContent,
+  TrendingFailureImg,
+  TrendingFailureContainer,
+  TrendingFailureHeading,
+  TrendingFailurePara,
+  TrendingRetryButton,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -72,7 +77,37 @@ class Trending extends Component {
     }
   }
 
-  renderFailureView = () => {}
+  renderFailureView = isDark => {
+    const heading = isDark ? '#f9f9f9' : '#1e293b'
+    const paragraph = isDark ? '#475569' : '#616e7c'
+    return (
+      <>
+        <TrendingFailureContainer>
+          {isDark ? (
+            <TrendingFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+              alt="failure view"
+            />
+          ) : (
+            <TrendingFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              alt="failure view"
+            />
+          )}
+          <TrendingFailureHeading color={heading}>
+            Oops! Something Went Wrong
+          </TrendingFailureHeading>
+          <TrendingFailurePara color={paragraph}>
+            We are having some trouble to complete your request.
+          </TrendingFailurePara>
+          <TrendingFailurePara color={paragraph}>
+            Please try again.
+          </TrendingFailurePara>
+          <TrendingRetryButton type="button">Retry</TrendingRetryButton>
+        </TrendingFailureContainer>
+      </>
+    )
+  }
 
   renderLoadingView = () => (
     <div className="loader-container">
@@ -82,7 +117,7 @@ class Trending extends Component {
 
   renderSuccessView = () => {
     const {trendingVideos} = this.state
-    console.log(trendingVideos)
+    // console.log(trendingVideos)
     return (
       <TrendingVideosList>
         {trendingVideos.map(eachVideo => (
@@ -92,13 +127,13 @@ class Trending extends Component {
     )
   }
 
-  renderTrendingViews = () => {
+  renderTrendingViews = isDark => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
         return this.renderSuccessView()
       case apiStatusConstants.failure:
-        return this.renderFailureView()
+        return this.renderFailureView(isDark)
       case apiStatusConstants.inProgress:
         return this.renderLoadingView()
       default:
@@ -107,8 +142,8 @@ class Trending extends Component {
   }
 
   render() {
-    const {trendingVideos} = this.state
-    console.log(trendingVideos)
+    const {trendingVideos, apiStatus} = this.state
+    // console.log(trendingVideos)
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -123,14 +158,18 @@ class Trending extends Component {
               <TrendingSideBarContainer>
                 <SideBar />
                 <TrendingMidCon>
-                  <TrendingBlockContainer color={topContainer}>
-                    <FireLogoContainer color={logoCon}>
-                      <AiFillFire color="#ff0b37" size={30} />
-                    </FireLogoContainer>
-                    <TrendingHeading color={heading}>Trending</TrendingHeading>
-                  </TrendingBlockContainer>
+                  {apiStatus === apiStatusConstants.success && (
+                    <TrendingBlockContainer color={topContainer}>
+                      <FireLogoContainer color={logoCon}>
+                        <AiFillFire color="#ff0b37" size={30} />
+                      </FireLogoContainer>
+                      <TrendingHeading color={heading}>
+                        Trending
+                      </TrendingHeading>
+                    </TrendingBlockContainer>
+                  )}
                   <TrendingViewContent color={bgColor}>
-                    {this.renderTrendingViews()}
+                    {this.renderTrendingViews(isDark)}
                   </TrendingViewContent>
                 </TrendingMidCon>
               </TrendingSideBarContainer>

@@ -96,12 +96,12 @@ class Home extends Component {
         <FailureContainer>
           {isDark ? (
             <FailureImg
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
               alt="failure view"
             />
           ) : (
             <FailureImg
-              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
               alt="failure view"
             />
           )}
