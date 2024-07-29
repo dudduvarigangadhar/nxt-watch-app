@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 export const ViewsCont = styled.div`
@@ -19,6 +20,7 @@ export const Heading = styled.p`
   font-weight: bold;
   margin-top: 0px;
   padding-top: 5px;
+  text-decoration: none;
   color: ${props => props.color};
 `
 export const ThumbImage = styled.img`
@@ -31,6 +33,7 @@ export const VideoCardContainer = styled.div`
   align-items: flex-start;
   margin-bottom: 70px;
   cursor: pointer;
+  text-decoration: none;
 `
 export const VideoViewsCon = styled.div`
   line-height: 1.3;
@@ -40,4 +43,7 @@ export const VideoContent = styled.div`
   margin: 0px;
   margin-left: 30px;
   line-height: 1.7;
+`
+export const Linked = styled(Link)`
+  text-decoration: none;
 `

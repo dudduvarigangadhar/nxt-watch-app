@@ -1,11 +1,40 @@
-import {Component} from 'react'
+import {Component, React} from 'react'
 import Cookies from 'js-cookie'
+import ReactPlayer from 'react-player'
+import {BiLike, BiDislike} from 'react-icons/bi'
+import {MdPlaylistAdd} from 'react-icons/md'
+import Loader from 'react-loader-spinner'
 import ThemeContext from '../../Context/ThemeContext'
 import {VideoDetails} from '../HomeVideo/styledComponents'
 import Header from '../Header'
 import SideBar from '../SideBar'
+// import React from 'react'
 
-import {VideoItemDetailsContainer} from './styledComponents'
+// Render a YouTube video player
+import {
+  VideoItemDetailsContainer,
+  FlexItemContainer,
+  VideoItemContainer,
+  VideoViewsFiled,
+  VideoLikeFiled,
+  VideoItemDivContainer,
+  YoutubeVideoContainer,
+  VideoItemPara,
+  YoutubeChannelContainer,
+  ProfileImg,
+  Description,
+  Title,
+  Name,
+  FlexItem,
+  SubscriberCount,
+  DescriptionContainer,
+  Button,
+  VideoItemDetailsFailureContainer,
+  VideoItemDetailsFailureImg,
+  VideoItemDetailsFailureHeading,
+  VideoItemDetailsFailurePara,
+  VideoItemDetailsFailureRetryBtn,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -15,7 +44,11 @@ const apiStatusConstants = {
 }
 
 class VideoItemDetails extends Component {
-  state = {apiStatus: apiStatusConstants.initial, videoItemDetails: []}
+  state = {
+    apiStatus: apiStatusConstants.initial,
+    videoItemDetails: [],
+    isLike: false,
+  }
 
   componentDidMount() {
     this.getVideosItemDetails()
@@ -55,6 +88,7 @@ class VideoItemDetails extends Component {
         videoUrl: videosData.video_url,
         viewCount: videosData.view_count,
       }
+      console.log(updatedData)
       this.setState({
         videoItemDetails: updatedData,
         apiStatus: apiStatusConstants.success,
@@ -68,10 +102,53 @@ class VideoItemDetails extends Component {
     // console.log(data)
   }
 
-  renderVideosItemsFailure = () => {}
+  renderVideosItemsFailure = isDark => {
+    const heading = isDark ? '#f9f9f9' : '#1e293b'
+    const paragraph = isDark ? '#475569' : '#616e7c'
+    return (
+      <>
+        <VideoItemDetailsFailureContainer>
+          {isDark ? (
+            <VideoItemDetailsFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+              alt="failure view"
+            />
+          ) : (
+            <VideoItemDetailsFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              alt="failure view"
+            />
+          )}
+          <VideoItemDetailsFailureHeading color={heading}>
+            Oops! Something Went Wrong
+          </VideoItemDetailsFailureHeading>
+          <VideoItemDetailsFailurePara color={paragraph}>
+            We are having some trouble to complete your request.
+          </VideoItemDetailsFailurePara>
+          <VideoItemDetailsFailurePara color={paragraph}>
+            Please try again.
+          </VideoItemDetailsFailurePara>
+          <VideoItemDetailsFailureRetryBtn type="button">
+            Retry
+          </VideoItemDetailsFailureRetryBtn>
+        </VideoItemDetailsFailureContainer>
+      </>
+    )
+  }
 
-  renderVideosItemsSuccess = () => {
-    const {updatedData} = this.state
+  onLikeButton = () => {
+    this.setState(prevState => ({
+      isLike: !prevState.isLike,
+    }))
+  }
+
+  renderVideosItemsSuccess = isDark => {
+    const {isLike} = this.state
+    const TitleAndName = isDark ? '#f9f9f9' : '#212121'
+    const viewColor = isDark ? '#94a3b8' : '#475569'
+    const bgColor = isDark ? '#000000' : '#f9f9f9'
+    const desColor = isDark ? '#f9f9f9' : '#616e7c'
+    const {videoItemDetails} = this.state
     const {
       name,
       profileImageUrl,
@@ -83,23 +160,88 @@ class VideoItemDetails extends Component {
       title,
       videoUrl,
       viewCount,
-    } = updatedData
+    } = videoItemDetails
     return (
-      <div>
-        <img src={profileImageUrl} alt="videoitem" />
-      </div>
+      <VideoItemDivContainer color={bgColor}>
+        <YoutubeVideoContainer>
+          <ReactPlayer
+            url={videoUrl}
+            width="100%"
+            height="100%"
+            controls
+            light={<img src={thumbnailUrl} alt="Thumbnail" />}
+          />
+        </YoutubeVideoContainer>{' '}
+        <Title color={TitleAndName}>{title}</Title>
+        <VideoViewsFiled color={viewColor}>
+          <FlexItem>
+            <VideoItemPara>{viewCount} views</VideoItemPara>
+            <VideoItemPara>. {publishedAt}</VideoItemPara>
+          </FlexItem>
+          <VideoLikeFiled>
+            <FlexItemContainer>
+              <Button>
+                <BiLike
+                  size={20}
+                  color={isDark ? '#94a3b8' : '#475569'}
+                  onClick={this.onLikeButton}
+                />
+              </Button>
+              <VideoItemPara>Like</VideoItemPara>
+            </FlexItemContainer>
+            <FlexItemContainer>
+              <Button>
+                <BiDislike
+                  size={20}
+                  color={isDark ? '#94a3b8' : '#475569'}
+                  onClick={this.onLikeButton}
+                />
+              </Button>
+              <VideoItemPara>DisLike</VideoItemPara>
+            </FlexItemContainer>
+            <FlexItemContainer>
+              <Button>
+                <MdPlaylistAdd
+                  size={20}
+                  color={isDark ? '#94a3b8' : '#475569'}
+                />
+              </Button>
+              <VideoItemPara>Save</VideoItemPara>
+            </FlexItemContainer>
+          </VideoLikeFiled>
+        </VideoViewsFiled>
+        <hr />
+        <YoutubeChannelContainer>
+          <ProfileImg src={profileImageUrl} alt="logo" />
+          <DescriptionContainer>
+            <div>
+              <Name color={TitleAndName}>{name}</Name>
+              <SubscriberCount color={viewColor}>
+                {subscriberCount} subscribers
+              </SubscriberCount>
+            </div>
+            <div>
+              <Description color={desColor}>{description}</Description>
+            </div>
+          </DescriptionContainer>
+        </YoutubeChannelContainer>
+      </VideoItemDivContainer>
     )
   }
 
-  renderVideosItemsLoading = () => {}
+  renderVideosItemsLoading = () => (
+    <div className="loader-container">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
 
-  renderVideosItemView = () => {
+  renderVideosItemView = isDark => {
     const {apiStatus} = this.state
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderVideosItemsSuccess()
+        return this.renderVideosItemsSuccess(isDark)
       case apiStatusConstants.failure:
-        return this.renderVideosItemsFailure()
+        return this.renderVideosItemsFailure(isDark)
       case apiStatusConstants.inProgress:
         return this.renderVideosItemsLoading()
       default:
@@ -112,16 +254,16 @@ class VideoItemDetails extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDark} = value
-
+          const bgColor = isDark ? '#000000' : '#f9f9f9'
           return (
             <div>
               <Header />
-              <div>
+              <VideoItemContainer>
                 <SideBar />
-                <VideoItemDetailsContainer>
-                  {this.renderVideosItemView()}
+                <VideoItemDetailsContainer color={bgColor}>
+                  {this.renderVideosItemView(isDark)}
                 </VideoItemDetailsContainer>
-              </div>
+              </VideoItemContainer>
             </div>
           )
         }}

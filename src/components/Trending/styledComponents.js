@@ -35,6 +35,7 @@ export const TrendingMidCon = styled.div`
 `
 export const TrendingVideosList = styled.div`
   //   padding-left: 70px;
+  text-decoration: none;
   margin-top: 60px;
 `
 export const TrendingViewContent = styled.div`

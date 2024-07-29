@@ -1,4 +1,3 @@
-import {Link} from 'react-router-dom'
 import ThemeContext from '../../Context/ThemeContext'
 import {
   ViewsCont,
@@ -8,13 +7,14 @@ import {
   VideoViewsCon,
   ThumbImage,
   VideoContent,
+  Linked,
 } from './styledComponents'
 
 const TrendingVideo = props => {
   const {details} = props
   const {id} = details
   return (
-    <Link to={`/videos/${id}`}>
+    <Linked to={`/videos/${id}`}>
       <ThemeContext.Consumer>
         {value => {
           const {isDark} = value
@@ -43,7 +43,7 @@ const TrendingVideo = props => {
           )
         }}
       </ThemeContext.Consumer>
-    </Link>
+    </Linked>
   )
 }
 
