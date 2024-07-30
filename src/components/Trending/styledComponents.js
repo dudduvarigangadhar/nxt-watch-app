@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const TrendingSideBarContainer = styled.div`
   display: flex;
   flex-direction: row;
+  height: 90vh;
 `
 export const FireLogoContainer = styled.div`
   height: 80px;
@@ -32,6 +33,8 @@ export const TrendingMidCon = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 92vh;
+  overflow-y: scroll;
 `
 export const TrendingVideosList = styled.div`
   //   padding-left: 70px;

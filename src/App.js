@@ -13,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 
 class App extends Component {
-  state = {isDark: false, activeId: 'HOME'}
+  state = {isDark: false, activeId: 'HOME', savedVideos: []}
 
   changeTheme = () => {
     this.setState(prevState => ({isDark: !prevState.isDark}))
@@ -23,16 +23,24 @@ class App extends Component {
     this.setState({activeId: id})
   }
 
+  onSavedVideos = details => {
+    this.setState(prevState => ({
+      savedVideos: [prevState.savedVideos, ...details],
+    }))
+  }
+
   render() {
-    const {isDark, activeId} = this.state
-    // console.log(isDark)
+    const {isDark, activeId, savedVideos} = this.state
+    console.log('saved', savedVideos)
     return (
       <ThemeContext.Provider
         value={{
           isDark,
           activeId,
+          savedVideos,
           activeTabItem: this.activeTabId,
           changeTheme: this.changeTheme,
+          onSavedVideos: this.onSavedVideos,
         }}
       >
         <Switch>

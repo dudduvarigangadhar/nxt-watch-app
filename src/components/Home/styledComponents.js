@@ -3,13 +3,15 @@ import styled from 'styled-components'
 export const HomeContainer = styled.div`
   height: 100vh;
   background-size: cover;
-  width: 100vw;
+  //   overflow: none;
+  //   width: 100vw;
 `
 
 export const HomeDivContainer = styled.div`
   display: flex;
   flex-direction: row;
   background-color: ${props => props.theme};
+  height: 92vh;
 `
 export const BannerImg = styled.img`
   height: 40px;
@@ -19,6 +21,9 @@ export const BannerHeading = styled.p`
   font-family: 'Roboto';
   width: 320px;
   line-height: 1.9;
+`
+export const HomeVideoDivContainer = styled.div`
+  overflow-y: scroll;
 `
 
 export const BannerBtn = styled.button`
@@ -47,6 +52,19 @@ export const BannerContainer = styled.div`
   //   justify-content: space-between;
   align-items: flex-start;
 `
+export const BannerDivContainer = styled.div`
+  display: ${props => props.display};
+`
+
+export const RenderView = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  //   overflow-y: scroll;
+`
+
 export const CloseContainer = styled.div`
   margin-left: 40%;
   //   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
@@ -94,7 +112,9 @@ export const HomeVideosContainer = styled.div`
 export const UnOrderList = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
+  //   width: 50vw;
   //   max-width: 100px;
   margin-top: 30px;
 `
@@ -134,4 +154,40 @@ export const RetryButton = styled.button`
 
 export const FailureImg = styled.img`
   height: 300px;
+`
+export const NoResultsImg = styled.img`
+  height: 300px;
+`
+
+export const NoResultHeading = styled.h1`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+  font-size: 20px;
+`
+
+export const NoResultsParagraph = styled.p`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+  font-size: 15px;
+`
+
+export const NoResultRetryBtn = styled.button`
+  margin-top: 10px;
+  width: 80px;
+  height: 35px;
+  font-family: 'Roboto';
+  color: #f1f5f9;
+  border-radius: 5px;
+  border: none;
+  background-color: #4f46e5;
+`
+export const NoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  @media screen and (min-width: 576px) {
+    margin-left: 250%;
+  }
 `

@@ -2,6 +2,7 @@ import {Component, React} from 'react'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'
 import {BiLike, BiDislike} from 'react-icons/bi'
+import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
 import {MdPlaylistAdd} from 'react-icons/md'
 import Loader from 'react-loader-spinner'
 import ThemeContext from '../../Context/ThemeContext'
@@ -47,7 +48,9 @@ class VideoItemDetails extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     videoItemDetails: [],
-    isLike: false,
+    isLiked: false,
+    isDisliked: false,
+    isVideoSaved: false,
   }
 
   componentDidMount() {
@@ -102,6 +105,20 @@ class VideoItemDetails extends Component {
     // console.log(data)
   }
 
+  onClickLikeButton = () => {
+    this.setState(prevState => ({
+      isLiked: !prevState.isLiked,
+      isDisliked: false,
+    }))
+  }
+
+  onClickDisLikeButton = () => {
+    this.setState(prevState => ({
+      isDisliked: !prevState.isDisliked,
+      isLiked: false,
+    }))
+  }
+
   renderVideosItemsFailure = isDark => {
     const heading = isDark ? '#f9f9f9' : '#1e293b'
     const paragraph = isDark ? '#475569' : '#616e7c'
@@ -136,18 +153,19 @@ class VideoItemDetails extends Component {
     )
   }
 
-  onLikeButton = () => {
-    this.setState(prevState => ({
-      isLike: !prevState.isLike,
-    }))
-  }
-
-  renderVideosItemsSuccess = isDark => {
-    const {isLike} = this.state
+  renderVideosItemsSuccess = (isDark, onChangeSavedVideos) => {
+    const {isLiked, isDisliked, isVideoSaved} = this.state
     const TitleAndName = isDark ? '#f9f9f9' : '#212121'
     const viewColor = isDark ? '#94a3b8' : '#475569'
     const bgColor = isDark ? '#000000' : '#f9f9f9'
     const desColor = isDark ? '#f9f9f9' : '#616e7c'
+
+    const likeClass = isLiked ? '#2563eb' : '#64748b'
+    const dislikeClass = isDisliked ? '#2563eb' : '#64748b'
+
+    const likeIcon = isLiked ? <BiLike /> : <AiOutlineLike />
+    const dislikeIcon = isDisliked ? <BiDislike /> : <AiOutlineDislike />
+
     const {videoItemDetails} = this.state
     const {
       name,
@@ -180,31 +198,31 @@ class VideoItemDetails extends Component {
           </FlexItem>
           <VideoLikeFiled>
             <FlexItemContainer>
-              <Button>
-                <BiLike
-                  size={20}
-                  color={isDark ? '#94a3b8' : '#475569'}
-                  onClick={this.onLikeButton}
-                />
+              <Button
+                type="button"
+                color={likeClass}
+                onClick={this.onClickLikeButton}
+              >
+                {likeIcon}
               </Button>
               <VideoItemPara>Like</VideoItemPara>
             </FlexItemContainer>
             <FlexItemContainer>
-              <Button>
-                <BiDislike
-                  size={20}
-                  color={isDark ? '#94a3b8' : '#475569'}
-                  onClick={this.onLikeButton}
-                />
+              <Button
+                type="button"
+                color={dislikeClass}
+                onClick={this.onClickDisLikeButton}
+              >
+                {dislikeIcon}
               </Button>
               <VideoItemPara>DisLike</VideoItemPara>
             </FlexItemContainer>
             <FlexItemContainer>
-              <Button>
-                <MdPlaylistAdd
-                  size={20}
-                  color={isDark ? '#94a3b8' : '#475569'}
-                />
+              <Button
+                type="button"
+                color={isVideoSaved ? '#4f46e5' : '#181818'}
+              >
+                <MdPlaylistAdd />
               </Button>
               <VideoItemPara>Save</VideoItemPara>
             </FlexItemContainer>
@@ -253,15 +271,19 @@ class VideoItemDetails extends Component {
     return (
       <ThemeContext.Consumer>
         {value => {
-          const {isDark} = value
+          const {isDark, onSavedVideos} = value
           const bgColor = isDark ? '#000000' : '#f9f9f9'
+          const onChangeSavedVideos = () => {
+            const {videoItemDetails} = this.state
+            onSavedVideos(videoItemDetails)
+          }
           return (
             <div>
               <Header />
               <VideoItemContainer>
                 <SideBar />
                 <VideoItemDetailsContainer color={bgColor}>
-                  {this.renderVideosItemView(isDark)}
+                  {this.renderVideosItemView(isDark, onChangeSavedVideos)}
                 </VideoItemDetailsContainer>
               </VideoItemContainer>
             </div>

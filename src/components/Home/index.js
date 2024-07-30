@@ -30,6 +30,14 @@ import {
   FailurePara,
   FailureImg,
   RetryButton,
+  NoResultsImg,
+  NoResultHeading,
+  NoResultsParagraph,
+  NoResultRetryBtn,
+  NoResultsContainer,
+  BannerDivContainer,
+  HomeVideoDivContainer,
+  RenderView,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -43,6 +51,8 @@ class Home extends Component {
   state = {
     homeVideos: [],
     apiStatus: apiStatusConstants.initial,
+    searchInput: '',
+    display: 'flex',
   }
 
   componentDidMount() {
@@ -55,8 +65,10 @@ class Home extends Component {
     })
 
     const jwtToken = Cookies.get('jwt_token')
+    const {searchInput} = this.state
     // console.log(jwtToken)
-    const apiUrl = 'https://apis.ccbp.in/videos/all?search='
+    const apiUrl = `https://apis.ccbp.in/videos/all?search=${searchInput}`
+    // const apiUrl = ``
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -64,9 +76,10 @@ class Home extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
-    console.log(response.status)
+    // console.log(response.status)
     if (response.ok === true) {
       const fetchedData = await response.json()
+
       const updatedData = fetchedData.videos.map(eachVideo => ({
         id: eachVideo.id,
         publishedAt: eachVideo.published_at,
@@ -86,6 +99,10 @@ class Home extends Component {
         apiStatus: apiStatusConstants.failure,
       })
     }
+  }
+
+  onRetry = () => {
+    this.setState({}, this.renderHomeVideos)
   }
 
   renderFailureView = isDark => {
@@ -118,25 +135,43 @@ class Home extends Component {
     )
   }
 
-  renderLoadingView = () => {
-    console.log('loading view')
-    return (
-      <HomeLoadingView className="loader-container">
-        <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
-      </HomeLoadingView>
-    )
-  }
+  renderLoadingView = () => (
+    <HomeLoadingView className="loader-container">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </HomeLoadingView>
+  )
 
   //   renderLoadingView = () => {}
 
-  renderSuccessView = () => {
+  renderSuccessView = isDark => {
     const {homeVideos} = this.state
-    console.log('success view')
+
+    const resultHeading = isDark ? '#f9f9f9' : '#1e293b'
+    const resultPara = isDark ? '#475569' : '#616e7c'
+
     return (
       <UnOrderList>
-        {homeVideos.map(eachVideo => (
-          <HomeVideo details={eachVideo} key={eachVideo.id} />
-        ))}
+        {homeVideos.length !== 0 &&
+          homeVideos.map(eachVideo => (
+            <HomeVideo details={eachVideo} key={eachVideo.id} />
+          ))}
+        {homeVideos.length === 0 && (
+          <NoResultsContainer>
+            <NoResultsImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+              alt="no search results"
+            />
+            <NoResultHeading color={resultHeading}>
+              No Search results found
+            </NoResultHeading>
+            <NoResultsParagraph color={resultPara}>
+              Try different key words or remove search filter
+            </NoResultsParagraph>
+            <NoResultRetryBtn type="button" onClick={this.onRetry}>
+              Retry
+            </NoResultRetryBtn>
+          </NoResultsContainer>
+        )}
       </UnOrderList>
     )
   }
@@ -146,7 +181,7 @@ class Home extends Component {
     // const theme = props
     switch (apiStatus) {
       case apiStatusConstants.success:
-        return this.renderSuccessView()
+        return this.renderSuccessView(isDark)
       case apiStatusConstants.failure:
         return this.renderFailureView(isDark)
       case apiStatusConstants.inProgress:
@@ -154,6 +189,24 @@ class Home extends Component {
       default:
         return null
     }
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  onSearchVideos = () => {
+    const {searchInput} = this.state
+    this.setState({searchInput}, this.renderHomeVideos)
+  }
+
+  RemoveBanner = () => {
+    this.setState(
+      {
+        display: 'none',
+      },
+      this.renderHomeVideos,
+    )
   }
 
   render() {
@@ -164,32 +217,35 @@ class Home extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDark, activeId, activeTabId} = value
-
+          const {searchInput, display} = this.state
           const textColor = isDark ? '#f9f9f9' : ' #181818'
 
           const bgColor = isDark ? '#181818' : '#f9f9f9'
-          console.log('Home', isDark)
+          console.log('banner', display)
           return (
             <HomeContainer>
               <Header />
               <HomeDivContainer theme={bgColor}>
                 <SideBar />
-                <div>
-                  <BannerContainer>
-                    <BannerOfferContainer>
-                      <BannerImg
-                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                        alt="nxt watch logo"
-                      />
-                      <BannerHeading>
-                        Buy Nxt Watch Premium prepaid plans with UPI
-                      </BannerHeading>
-                      <BannerBtn type="button">GET IT NOW</BannerBtn>
-                    </BannerOfferContainer>
-                    <CloseContainer>
-                      <IoIosClose size={30} />
-                    </CloseContainer>
-                  </BannerContainer>
+
+                <HomeVideoDivContainer>
+                  <BannerDivContainer display={display}>
+                    <BannerContainer>
+                      <BannerOfferContainer>
+                        <BannerImg
+                          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                          alt="nxt watch logo"
+                        />
+                        <BannerHeading>
+                          Buy Nxt Watch Premium prepaid plans with UPI
+                        </BannerHeading>
+                        <BannerBtn type="button">GET IT NOW</BannerBtn>
+                      </BannerOfferContainer>
+                      <CloseContainer>
+                        <IoIosClose size={30} onClick={this.RemoveBanner} />
+                      </CloseContainer>
+                    </BannerContainer>
+                  </BannerDivContainer>
                   <HomeVideosContainer>
                     <SearchContainer>
                       <SearchInput
@@ -197,18 +253,21 @@ class Home extends Component {
                         placeholder="Search"
                         inColor={bgColor}
                         borderColor={isDark ? '#7e858e' : '#ebebeb'}
+                        onChange={this.onChangeSearchInput}
+                        value={searchInput}
                       />
                       <SearchButton
                         data-testid="searchButton"
                         btnColor={isDark ? '#383838' : '#f4f4f4'}
                         borderColor={isDark ? '#7e858e' : '#ebebeb'}
+                        onClick={this.onSearchVideos}
                       >
                         <IoMdSearch size={20} color="#616e7c" />
                       </SearchButton>
                     </SearchContainer>
-                    {this.renderViewsList(isDark)}
+                    <RenderView>{this.renderViewsList(isDark)}</RenderView>
                   </HomeVideosContainer>
-                </div>
+                </HomeVideoDivContainer>
               </HomeDivContainer>
             </HomeContainer>
           )

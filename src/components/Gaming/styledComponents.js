@@ -25,12 +25,8 @@ export const GamingHeadingCon = styled.div`
   height: 130px;
 `
 export const DivContainer = styled.div`
-  //   height: 130px;
-  //   background-color: ${props => props.color};
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-items: center;
+  height: 92vh;
+  overflow-y: scroll;
 `
 export const GamingLogoCon = styled.div`
   height: 80px;

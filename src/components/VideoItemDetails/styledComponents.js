@@ -3,11 +3,14 @@ import styled from 'styled-components'
 export const VideoItemContainer = styled.div`
   display: flex;
   flex-direction: row;
+  height: 92vh;
 `
 
 export const VideoItemDetailsContainer = styled.div`
   background-color: ${props => props.color};
   width: 100%;
+  height: 92vh;
+  overflow-y: scroll;
 `
 
 export const VideoItemPara = styled.p`
@@ -27,7 +30,7 @@ export const VideoViewsFiled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 800px;
+  width: 600px;
   color: ${props => props.color};
 `
 
@@ -70,6 +73,7 @@ export const Name = styled.p`
 `
 export const Button = styled.button`
   border: none;
+  cursor: pointer;
   background-color: transparent;
 `
 
