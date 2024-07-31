@@ -24,9 +24,18 @@ class App extends Component {
   }
 
   onSavedVideos = details => {
-    this.setState(prevState => ({
-      savedVideos: [prevState.savedVideos, ...details],
-    }))
+    const {savedVideos} = this.state
+    const index = savedVideos.findIndex(
+      eachVideo => eachVideo.id === details.id,
+    )
+    if (index === -1) {
+      this.setState({savedVideos: [...savedVideos, details]})
+    } else {
+      savedVideos.splice(index, 1)
+      this.setState({
+        savedVideos,
+      })
+    }
   }
 
   render() {

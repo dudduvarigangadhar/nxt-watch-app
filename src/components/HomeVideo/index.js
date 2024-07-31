@@ -37,7 +37,7 @@ const HomeVideo = props => (
       const ViewTextColor = isDark ? '#475569' : '#475569'
 
       return (
-        <Link to="/id" className="link">
+        <Link to={`/videos/${id}`} className="link">
           <VideosId>
             <ThumbnailImg src={thumbnailUrl} alt="video thumbnail" />
             <VideoDetails>

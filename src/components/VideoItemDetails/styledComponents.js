@@ -19,7 +19,7 @@ export const VideoItemDetailsContainer = styled.div`
 
 export const VideoItemPara = styled.p`
   font-family: 'Roboto';
-  //   color: ${props => props.color};
+  color: ${props => props.color};
   margin-right: 5px;
 `
 
@@ -27,6 +27,7 @@ export const FlexItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
   margin-left: 20px;
   //   width: 800px;
 `
@@ -78,6 +79,7 @@ export const Name = styled.p`
 export const Button = styled.button`
   border: none;
   cursor: pointer;
+  color: ${props => props.color};
   background-color: transparent;
 `
 
