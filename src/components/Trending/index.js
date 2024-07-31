@@ -21,6 +21,7 @@ import {
   TrendingFailureHeading,
   TrendingFailurePara,
   TrendingRetryButton,
+  TrendingBlock,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -151,15 +152,18 @@ class Trending extends Component {
           const logoCon = isDark ? '#000000' : '#d7dfe9'
           const heading = isDark ? '#f1f5f9' : '#1e293b'
           const topContainer = isDark ? '#181818' : '#ebebeb'
-          const bgColor = isDark ? '#000000' : '#f9f9f9'
+          const bgColor = isDark ? '#0f0f0f' : '#f9f9f9'
           return (
-            <div>
+            <TrendingBlock data-testid="trending" color={bgColor}>
               <Header />
               <TrendingSideBarContainer>
                 <SideBar />
                 <TrendingMidCon>
                   {apiStatus === apiStatusConstants.success && (
-                    <TrendingBlockContainer color={topContainer}>
+                    <TrendingBlockContainer
+                      color={topContainer}
+                      data-testid="banner"
+                    >
                       <FireLogoContainer color={logoCon}>
                         <AiFillFire color="#ff0b37" size={30} />
                       </FireLogoContainer>
@@ -168,12 +172,12 @@ class Trending extends Component {
                       </TrendingHeading>
                     </TrendingBlockContainer>
                   )}
-                  <TrendingViewContent color={bgColor}>
+                  <TrendingViewContent>
                     {this.renderTrendingViews(isDark)}
                   </TrendingViewContent>
                 </TrendingMidCon>
               </TrendingSideBarContainer>
-            </div>
+            </TrendingBlock>
           )
         }}
       </ThemeContext.Consumer>

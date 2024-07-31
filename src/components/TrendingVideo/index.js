@@ -23,7 +23,7 @@ const TrendingVideo = props => {
 
           return (
             <VideoCardContainer>
-              <ThumbImage src={details.thumbnailUrl} alt="img" />
+              <ThumbImage src={details.thumbnailUrl} alt="video thumbnail" />
               <VideoContent>
                 <Heading color={textColor}>{details.title}</Heading>
                 <VideoViewsCon>

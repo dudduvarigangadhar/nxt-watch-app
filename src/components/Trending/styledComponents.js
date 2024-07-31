@@ -15,6 +15,9 @@ export const FireLogoContainer = styled.div`
   padding-top: 25px;
   margin-left: 50px;
 `
+export const TrendingBlock = styled.div`
+  background-color: ${props => props.color};
+`
 
 export const TrendingBlockContainer = styled.div`
   height: 130px;

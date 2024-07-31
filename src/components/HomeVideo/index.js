@@ -39,9 +39,9 @@ const HomeVideo = props => (
       return (
         <Link to="/id" className="link">
           <VideosId>
-            <ThumbnailImg src={thumbnailUrl} alt="thumbnail" />
+            <ThumbnailImg src={thumbnailUrl} alt="video thumbnail" />
             <VideoDetails>
-              <ProfileImg src={profileImageUrl} alt="profile" />
+              <ProfileImg src={profileImageUrl} alt="channel logo" />
               <VideoTitleContainer>
                 <Title color={VideoTextColor}>{title}</Title>
                 <div>

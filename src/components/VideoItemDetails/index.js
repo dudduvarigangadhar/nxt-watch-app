@@ -1,6 +1,8 @@
 import {Component, React} from 'react'
 import Cookies from 'js-cookie'
 import ReactPlayer from 'react-player'
+
+import {formatDistanceToNow} from 'date-fns'
 import {BiLike, BiDislike} from 'react-icons/bi'
 import {AiOutlineLike, AiOutlineDislike} from 'react-icons/ai'
 import {MdPlaylistAdd} from 'react-icons/md'
@@ -35,6 +37,7 @@ import {
   VideoItemDetailsFailureHeading,
   VideoItemDetailsFailurePara,
   VideoItemDetailsFailureRetryBtn,
+  VideoItemDetailsBlock,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -179,6 +182,8 @@ class VideoItemDetails extends Component {
       videoUrl,
       viewCount,
     } = videoItemDetails
+    const date = String(formatDistanceToNow(new Date(publishedAt))).split(' ')
+    const postedOn = date[1]
     return (
       <VideoItemDivContainer color={bgColor}>
         <YoutubeVideoContainer>
@@ -187,14 +192,14 @@ class VideoItemDetails extends Component {
             width="100%"
             height="100%"
             controls
-            light={<img src={thumbnailUrl} alt="Thumbnail" />}
+            light={<img src={thumbnailUrl} alt="video thumbnail" />}
           />
         </YoutubeVideoContainer>{' '}
         <Title color={TitleAndName}>{title}</Title>
         <VideoViewsFiled color={viewColor}>
           <FlexItem>
             <VideoItemPara>{viewCount} views</VideoItemPara>
-            <VideoItemPara>. {publishedAt}</VideoItemPara>
+            <VideoItemPara> . {postedOn} years ago</VideoItemPara>
           </FlexItem>
           <VideoLikeFiled>
             <FlexItemContainer>
@@ -230,7 +235,7 @@ class VideoItemDetails extends Component {
         </VideoViewsFiled>
         <hr />
         <YoutubeChannelContainer>
-          <ProfileImg src={profileImageUrl} alt="logo" />
+          <ProfileImg src={profileImageUrl} alt="website logo" />
           <DescriptionContainer>
             <div>
               <Name color={TitleAndName}>{name}</Name>
@@ -272,21 +277,24 @@ class VideoItemDetails extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDark, onSavedVideos} = value
-          const bgColor = isDark ? '#000000' : '#f9f9f9'
+          const bgColor = isDark ? '#0f0f0f' : '#f9f9f9'
           const onChangeSavedVideos = () => {
             const {videoItemDetails} = this.state
             onSavedVideos(videoItemDetails)
           }
           return (
-            <div>
+            <VideoItemDetailsBlock
+              data-testid="videoItemDetails"
+              color={bgColor}
+            >
               <Header />
               <VideoItemContainer>
                 <SideBar />
-                <VideoItemDetailsContainer color={bgColor}>
+                <VideoItemDetailsContainer>
                   {this.renderVideosItemView(isDark, onChangeSavedVideos)}
                 </VideoItemDetailsContainer>
               </VideoItemContainer>
-            </div>
+            </VideoItemDetailsBlock>
           )
         }}
       </ThemeContext.Consumer>

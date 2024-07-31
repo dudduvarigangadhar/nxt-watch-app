@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const HomeContainer = styled.div`
   height: 100vh;
   background-size: cover;
+  background-color: ${props => props.theme};
   //   overflow: none;
   //   width: 100vw;
 `
@@ -10,7 +11,7 @@ export const HomeContainer = styled.div`
 export const HomeDivContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${props => props.theme};
+
   height: 92vh;
 `
 export const BannerImg = styled.img`

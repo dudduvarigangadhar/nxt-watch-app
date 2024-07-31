@@ -45,3 +45,68 @@ export const HeaderProfile = styled.div`
   width: 300px;
   justify-content: space-evenly;
 `
+
+export const CancelBtn = styled.button`
+  color: ${props => props.color};
+  background-color: transparent;
+  border: 1px solid grey;
+  padding: 8px;
+  padding-right: 12px;
+  padding-left: 12px;
+  color: grey;
+  margin: 12px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 12px;
+`
+
+export const ConfirmBtn = styled.button`
+  background-color: #3b82f6;
+  align-self: flex-end;
+  color: white;
+  padding: 8px;
+  padding-right: 12px;
+  padding-left: 12px;
+  border: 1px solid #3b82f6;
+  margin: 12px;
+  outline: none;
+  cursor: pointer;
+  border-radius: 6px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  font-size: 12px;
+`
+
+export const PopUpContainer = styled.div`
+  width: 270px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: ${props => props.color};
+`
+export const PopUpMessage = styled.p`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+  font-size: 15px;
+  color: black;
+  text-align: center;
+`
+export const ModalDesc = styled.p`
+  font-family: 'Roboto';
+  color: ${props => props.color};
+`
+export const ButtonsCon = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+export const ThemeButton = styled.div`
+  background-color: transparent;
+  border: none;
+`

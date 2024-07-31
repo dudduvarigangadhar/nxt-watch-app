@@ -11,7 +11,7 @@ const GamingVideoCard = props => (
       const {details} = props
       return (
         <GameCard to={`/videos/${details.id}`}>
-          <GameImg src={details.thumbnailUrl} alt="gaming video" />
+          <GameImg src={details.thumbnailUrl} alt="video thumbnail" />
           <TitleCard color={titleValue}>{details.title}</TitleCard>
           <ViewsCard color={viewValue}>
             {details.viewCount} Watching Worldwide

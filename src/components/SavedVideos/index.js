@@ -29,7 +29,7 @@ class SavedVideos extends Component {
               <Header />
               <SavedVideosContainer>
                 <SideBar />
-                <SavedBlockContainer color={topContainer}>
+                <SavedBlockContainer color={topContainer} data-testid="banner">
                   <SavedLogoContainer color={logoCon}>
                     <MdPlaylistAdd color="#ff0b37" size={30} />
                   </SavedLogoContainer>

@@ -1,5 +1,8 @@
 import {Component} from 'react'
 import {SiYoutubegaming} from 'react-icons/si'
+
+import Loader from 'react-loader-spinner'
+
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import SideBar from '../SideBar'
@@ -13,9 +16,15 @@ import {
   GamingHeadingCon,
   //   GamingHeadingDiv,
   DivContainer,
+  GamingBlock,
   GamingLogoCon,
   GamingSuccessViewContainer,
   GamingHeading,
+  GamingRetryButton,
+  GamingFailurePara,
+  GamingFailureHeading,
+  GamingFailureImg,
+  GamingFailureContainer,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -78,9 +87,43 @@ class Gaming extends Component {
     )
   }
 
-  renderGamingFailureView = () => {}
+  renderGamingFailureView = isDark => {
+    const heading = isDark ? '#f9f9f9' : '#1e293b'
+    const paragraph = isDark ? '#475569' : '#616e7c'
+    return (
+      <>
+        <GamingFailureContainer>
+          {isDark ? (
+            <GamingFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+              alt="failure view"
+            />
+          ) : (
+            <GamingFailureImg
+              src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+              alt="failure view"
+            />
+          )}
+          <GamingFailureHeading color={heading}>
+            Oops! Something Went Wrong
+          </GamingFailureHeading>
+          <GamingFailurePara color={paragraph}>
+            We are having some trouble to complete your request.
+          </GamingFailurePara>
+          <GamingFailurePara color={paragraph}>
+            Please try again.
+          </GamingFailurePara>
+          <GamingRetryButton type="button">Retry</GamingRetryButton>
+        </GamingFailureContainer>
+      </>
+    )
+  }
 
-  renderGamingLoadingView = () => {}
+  renderGamingLoadingView = () => (
+    <div className="loader-container">
+      <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
 
   renderGamingViews = isDark => {
     const {apiStatus} = this.state
@@ -105,17 +148,20 @@ class Gaming extends Component {
           const heading = isDark ? '#f1f5f9' : '#1e293b'
           const topContainer = isDark ? '#181818' : '#ebebeb'
           // const bgColor = isDark ? '#000000' : '#f9f9f9'
-          const bgColor = isDark ? '#000000' : '#f9f9f9'
+          const bgColor = isDark ? '#0f0f0f' : '#f9f9f9'
           const {apiStatus} = this.state
           return (
-            <div>
+            <GamingBlock data-testid="gaming" color={bgColor}>
               <Header />
               <GamingContainer>
                 <SideBar />
                 <DivContainer>
                   {apiStatus === apiStatusConstants.success && (
                     <>
-                      <GamingHeadingCon color={topContainer}>
+                      <GamingHeadingCon
+                        color={topContainer}
+                        data-testid="banner"
+                      >
                         <GamingLogoCon color={logoCon}>
                           <SiYoutubegaming color="#ff0b37" size={30} />
                         </GamingLogoCon>
@@ -123,12 +169,12 @@ class Gaming extends Component {
                       </GamingHeadingCon>
                     </>
                   )}
-                  <GamingViewCon color={bgColor}>
+                  <GamingViewCon>
                     {this.renderGamingViews(isDark)}
                   </GamingViewCon>
                 </DivContainer>
               </GamingContainer>
-            </div>
+            </GamingBlock>
           )
         }}
       </ThemeContext.Consumer>

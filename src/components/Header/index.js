@@ -1,3 +1,6 @@
+import Popup from 'reactjs-popup'
+
+import 'reactjs-popup/dist/index.css'
 import {withRouter} from 'react-router-dom'
 import {BsMoon} from 'react-icons/bs'
 import {FiSun} from 'react-icons/fi'
@@ -9,7 +12,14 @@ import {
   LogoutBtn,
   HeaderContainer,
   HeaderProfile,
+  PopUpContainer,
+  ConfirmBtn,
+  PopUpMessage,
+  CancelBtn,
+  ButtonsCon,
   LogoBtn,
+  ModalDesc,
+  ThemeButton,
 } from './styledComponents'
 import ThemeContext from '../../Context/ThemeContext'
 
@@ -63,18 +73,56 @@ const Header = props => (
             />
 
             {isDark ? (
-              <FiSun size={30} onClick={OnChangeTheme} color={textColor} />
+              <ThemeButton type="button" onClick={OnChangeTheme}>
+                <FiSun size={30} color={textColor} />
+              </ThemeButton>
             ) : (
-              <BsMoon size={30} onClick={OnChangeTheme} color={textColor} />
+              <ThemeButton type="button" onClick={OnChangeTheme}>
+                <BsMoon size={30} color={textColor} />
+              </ThemeButton>
             )}
 
-            <LogoutBtn
-              type="button"
-              onClick={onLogout}
-              color={isDark ? '#ffffff' : '#3b82f6'}
-            >
-              Logout
-            </LogoutBtn>
+            <div>
+              <Popup
+                modal
+                trigger={
+                  <LogoutBtn
+                    type="button"
+                    className="trigger-button"
+                    color={isDark ? '#ffffff' : '#3b82f6'}
+                  >
+                    Logout
+                  </LogoutBtn>
+                }
+              >
+                {close => (
+                  <PopUpContainer>
+                    <ModalDesc>
+                      <PopUpMessage>
+                        Are you sure you want to logout ?
+                      </PopUpMessage>
+                    </ModalDesc>
+                    <ButtonsCon>
+                      <CancelBtn
+                        type="button"
+                        className="trigger-button"
+                        onClick={() => close()}
+                        data-testid="closeButton"
+                      >
+                        Cancel
+                      </CancelBtn>
+                      <ConfirmBtn
+                        type="button"
+                        className="trigger-button"
+                        onClick={() => onLogout()}
+                      >
+                        Confirm
+                      </ConfirmBtn>
+                    </ButtonsCon>
+                  </PopUpContainer>
+                )}
+              </Popup>
+            </div>
           </HeaderProfile>
         </HeaderContainer>
       )

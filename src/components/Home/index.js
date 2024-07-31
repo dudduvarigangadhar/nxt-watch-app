@@ -223,13 +223,13 @@ class Home extends Component {
           const bgColor = isDark ? '#181818' : '#f9f9f9'
           console.log('banner', display)
           return (
-            <HomeContainer>
+            <HomeContainer data-testid="home" theme={bgColor}>
               <Header />
-              <HomeDivContainer theme={bgColor}>
+              <HomeDivContainer>
                 <SideBar />
 
                 <HomeVideoDivContainer>
-                  <BannerDivContainer display={display}>
+                  <BannerDivContainer display={display} data-testid="banner">
                     <BannerContainer>
                       <BannerOfferContainer>
                         <BannerImg
@@ -242,7 +242,11 @@ class Home extends Component {
                         <BannerBtn type="button">GET IT NOW</BannerBtn>
                       </BannerOfferContainer>
                       <CloseContainer>
-                        <IoIosClose size={30} onClick={this.RemoveBanner} />
+                        <IoIosClose
+                          size={30}
+                          onClick={this.RemoveBanner}
+                          data-testid="close"
+                        />
                       </CloseContainer>
                     </BannerContainer>
                   </BannerDivContainer>
