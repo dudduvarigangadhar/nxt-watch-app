@@ -3,7 +3,7 @@ import {Component} from 'react'
 import Login from './components/Login'
 import Home from './components/Home'
 import Gaming from './components/Gaming'
-import SavedVideos from './components/SavedVideos'
+import SavedVideosComponent from './components/SavedVideosComponent'
 import NotFound from './components/NotFound'
 import Trending from './components/Trending'
 import ThemeContext from './Context/ThemeContext'
@@ -57,7 +57,10 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute exact path="/gaming" component={Gaming} />
-          <ProtectedRoute path="/savedVideos" component={SavedVideos} />
+          <ProtectedRoute
+            path="/savedVideos"
+            component={SavedVideosComponent}
+          />
           <ProtectedRoute
             exact
             path="/videos/:id"

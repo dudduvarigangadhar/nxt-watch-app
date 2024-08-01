@@ -103,7 +103,7 @@ const SideBar = () => (
               onClick={onChangeSavedVideosRoute}
               bgColor={bgColor}
             >
-              <NavLink to="savedVideos">
+              <NavLink to="/savedVideos">
                 <MdPlaylistAdd
                   size={20}
                   color={activeId === 'SAVEDVIDEOS' ? '#ff0b37' : '#909090'}

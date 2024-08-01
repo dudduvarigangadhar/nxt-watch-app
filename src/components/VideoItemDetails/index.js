@@ -80,7 +80,7 @@ class VideoItemDetails extends Component {
     const response = await fetch(url, options)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
+
       const videosData = data.video_details
       const updatedData = {
         name: videosData.channel.name,
@@ -164,7 +164,8 @@ class VideoItemDetails extends Component {
     const viewColor = isDark ? '#94a3b8' : '#475569'
     const bgColor = isDark ? '#000000' : '#f9f9f9'
     const desColor = isDark ? '#f9f9f9' : '#616e7c'
-    const textColor = isDark ? '#64748b' : '#231f20'
+
+    // '#64748b' : '#231f20'
     const likeClass = isLiked ? '#2563eb' : '#64748b'
     const dislikeClass = isDisliked ? '#2563eb' : '#64748b'
 
@@ -201,8 +202,6 @@ class VideoItemDetails extends Component {
           const {onSavedVideos, savedVideos} = value
 
           let isSaved
-          const saveIconColor = isSaved ? textColor : '#2563eb'
-          console.log(saveIconColor)
 
           const saveVideo = () => {
             onSavedVideos(videoItemDetails)
@@ -217,6 +216,9 @@ class VideoItemDetails extends Component {
           } else {
             isSaved = true
           }
+          const textColor = isSaved ? '#2563eb' : '#64748b'
+
+          const saveIconColor = isSaved ? textColor : '#64748b'
 
           return (
             <VideoItemDivContainer color={bgColor}>
@@ -240,19 +242,21 @@ class VideoItemDetails extends Component {
                     <Button type="button" color={likeClass}>
                       {likeIcon}
                     </Button>
-                    <VideoItemPara>Like</VideoItemPara>
+                    <VideoItemPara color={likeClass}>Like</VideoItemPara>
                   </FlexItemContainer>
                   <FlexItemContainer onClick={this.onClickDisLikeButton}>
                     <Button type="button" color={dislikeClass}>
                       {dislikeIcon}
                     </Button>
-                    <VideoItemPara>DisLike</VideoItemPara>
+                    <VideoItemPara color={dislikeClass}>DisLike</VideoItemPara>
                   </FlexItemContainer>
                   <FlexItemContainer onClick={saveVideo}>
                     <Button type="button" color={saveIconColor}>
                       <BiListPlus size={20} />
                     </Button>
-                    <VideoItemPara>{isSaved ? 'saved' : 'save'}</VideoItemPara>
+                    <VideoItemPara color={saveIconColor}>
+                      {isSaved ? 'saved' : 'save'}
+                    </VideoItemPara>
                   </FlexItemContainer>
                 </VideoLikeFiled>
               </VideoViewsFiled>

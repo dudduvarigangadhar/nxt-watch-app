@@ -34,8 +34,9 @@ export const FlexItemContainer = styled.div`
 export const VideoViewsFiled = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  width: 600px;
+  width: 800px;
   color: ${props => props.color};
 `
 
