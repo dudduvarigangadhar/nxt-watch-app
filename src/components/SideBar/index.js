@@ -49,12 +49,13 @@ const SideBar = () => (
               isActive={activeId === 'HOME' ? listLightColor : ''}
               bgColor={bgColor}
             >
-              <NavLink to="/">
+              <NavLink>
                 <AiFillHome
                   size={20}
                   color={activeId === 'HOME' ? '#ff0b37' : '#909090'}
                 />
                 <ListPara
+                  to="/"
                   color={textColor}
                   font={activeId === 'HOME' ? 'bold' : 'normal'}
                 >
@@ -67,12 +68,13 @@ const SideBar = () => (
               onClick={onChangeTrendingRoute}
               bgColor={bgColor}
             >
-              <NavLink to="/trending">
+              <NavLink>
                 <AiFillFire
                   size={20}
                   color={activeId === 'TRENDING' ? '#ff0b37' : '#909090'}
                 />
                 <ListPara
+                  to="/trending"
                   color={textColor}
                   font={activeId === 'TRENDING' ? 'bold' : 'normal'}
                 >
@@ -85,12 +87,13 @@ const SideBar = () => (
               onClick={onChangeGamingRoute}
               bgColor={bgColor}
             >
-              <NavLink to="/gaming">
+              <NavLink>
                 <SiYoutubegaming
                   size={20}
                   color={activeId === 'GAMING' ? '#ff0b37' : '#909090'}
                 />
                 <ListPara
+                  to="/gaming"
                   color={textColor}
                   font={activeId === 'GAMING' ? 'bold' : 'normal'}
                 >
@@ -103,17 +106,18 @@ const SideBar = () => (
               onClick={onChangeSavedVideosRoute}
               bgColor={bgColor}
             >
-              <NavLink to="/savedVideos">
+              <NavLink>
                 <MdPlaylistAdd
                   size={20}
                   color={activeId === 'SAVEDVIDEOS' ? '#ff0b37' : '#909090'}
                 />
                 <ListPara
+                  to="/savedVideos"
                   color={textColor}
                   font={activeId === 'SAVEDVIDEOS' ? 'bold' : 'normal'}
                 >
                   {' '}
-                  Saved videos{' '}
+                  Saved Videos{' '}
                 </ListPara>
               </NavLink>
             </ListItem>

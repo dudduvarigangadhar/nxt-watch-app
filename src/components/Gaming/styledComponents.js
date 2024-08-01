@@ -5,7 +5,7 @@ export const GamingContainer = styled.div`
   flex-direction: row;
 `
 
-export const GamingVideoCardContainer = styled.div`
+export const GamingVideoCardContainer = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

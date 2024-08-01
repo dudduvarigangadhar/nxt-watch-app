@@ -120,7 +120,7 @@ export const VideoItemDetailsFailureImg = styled.img`
   height: 300px;
 `
 
-export const VideoItemDetailsFailureHeading = styled.p`
+export const VideoItemDetailsFailureHeading = styled.h1`
   font-family: 'Roboto';
   font-size: 20px;
   color: ${props => props.color};

@@ -12,14 +12,14 @@ export const GameCard = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 `
-export const TitleCard = styled.div`
+export const TitleCard = styled.p`
   font-family: 'Roboto';
   color: ${props => props.color};
   font-weight: 450;
   font-size: 15px;
 `
 
-export const ViewsCard = styled.div`
+export const ViewsCard = styled.p`
   font-family: 'Roboto';
   color: ${props => props.color};
   margin-top: 10px;

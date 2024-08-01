@@ -16,7 +16,8 @@ export const Recommendations = styled.p`
   padding-left: 15px;
   line-height: 1.5;
 `
-export const ListPara = styled.p`
+export const ListPara = styled(Link)`
+  text-decoration: none;
   margin-left: 15px;
   font-weight: ${props => props.font};
   color: ${props => props.color};
@@ -64,7 +65,7 @@ export const UnorderedList = styled.ul`
   padding: 0px;
   width: 230px;
 `
-export const NavLink = styled(Link)`
+export const NavLink = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;

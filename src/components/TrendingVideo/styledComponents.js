@@ -26,7 +26,9 @@ export const Heading = styled.p`
 export const ThumbImage = styled.img`
   height: 200px;
 `
-export const VideoCardContainer = styled.div`
+export const VideoCardContainer = styled.li`
+  list-style-type: none;
+  padding: 0px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

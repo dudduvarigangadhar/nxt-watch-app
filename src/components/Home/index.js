@@ -129,7 +129,9 @@ class Home extends Component {
             We are having some trouble to complete your request.
           </FailurePara>
           <FailurePara color={paragraph}>Please try again.</FailurePara>
-          <RetryButton type="button">Retry</RetryButton>
+          <RetryButton type="button" onClick={this.onRetry}>
+            Retry
+          </RetryButton>
         </FailureContainer>
       </>
     )

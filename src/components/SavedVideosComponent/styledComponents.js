@@ -62,4 +62,5 @@ export const SavedContainer = styled.div`
 `
 export const SavedVideoRouteContainer = styled.div`
   height: 100vh;
+  background-color: ${props => props.color};
 `

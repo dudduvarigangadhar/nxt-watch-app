@@ -106,7 +106,7 @@ export const ButtonsCon = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `
-export const ThemeButton = styled.div`
+export const ThemeButton = styled.button`
   background-color: transparent;
   border: none;
 `

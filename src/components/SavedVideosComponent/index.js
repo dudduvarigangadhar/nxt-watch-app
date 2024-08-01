@@ -29,9 +29,9 @@ const SavedVideosComponent = () => (
       const bgColor = isDark ? '#0f0f0f' : '#f9f9f9'
       console.log(savedVideos)
       return (
-        <SavedVideoRouteContainer>
+        <SavedVideoRouteContainer color={bgColor} data-testid="savedVideos">
           <Header />
-          <SavedVideosContainer color={bgColor} data-testid="banner">
+          <SavedVideosContainer>
             <SideBar />
             {savedVideos.length === 0 ? (
               <NoSavedVideosContainer>

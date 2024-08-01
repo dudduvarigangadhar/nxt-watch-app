@@ -60,6 +60,10 @@ class VideoItemDetails extends Component {
     this.getVideosItemDetails()
   }
 
+  onRetry = () => {
+    this.setState({}, this.getVideosItemDetails)
+  }
+
   getVideosItemDetails = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -146,11 +150,10 @@ class VideoItemDetails extends Component {
           </VideoItemDetailsFailureHeading>
           <VideoItemDetailsFailurePara color={paragraph}>
             We are having some trouble to complete your request.
+            <br /> Please try again.
           </VideoItemDetailsFailurePara>
-          <VideoItemDetailsFailurePara color={paragraph}>
-            Please try again.
-          </VideoItemDetailsFailurePara>
-          <VideoItemDetailsFailureRetryBtn type="button">
+
+          <VideoItemDetailsFailureRetryBtn type="button" onClick={this.onRetry}>
             Retry
           </VideoItemDetailsFailureRetryBtn>
         </VideoItemDetailsFailureContainer>
@@ -255,7 +258,7 @@ class VideoItemDetails extends Component {
                       <BiListPlus size={20} />
                     </Button>
                     <VideoItemPara color={saveIconColor}>
-                      {isSaved ? 'saved' : 'save'}
+                      {isSaved ? 'Saved' : 'Save'}
                     </VideoItemPara>
                   </FlexItemContainer>
                 </VideoLikeFiled>

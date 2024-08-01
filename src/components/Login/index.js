@@ -87,7 +87,7 @@ class Login extends Component {
       <LoginContainer theme={theme}>
         <FormContainer theme={theme}>
           <div>
-            <LogoImg src={logoImg} alt="logo" />
+            <LogoImg src={logoImg} alt="website logo" />
           </div>
           <LoginFields onSubmit={this.onSubmitForm}>
             <CustomLabel htmlFor="username">USERNAME</CustomLabel>

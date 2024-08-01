@@ -1,7 +1,7 @@
 import Popup from 'reactjs-popup'
 
 import 'reactjs-popup/dist/index.css'
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import {BsMoon} from 'react-icons/bs'
 import {FiSun} from 'react-icons/fi'
 import {Cookies} from 'js-cookie'
@@ -42,28 +42,32 @@ const Header = props => (
         history.replace('/login')
       }
 
-      const RouteToHome = () => {
-        const {history} = props
-        history.replace('/')
-      }
+      //const RouteToHome = () => {
+      //const {history} = props
+      //history.replace('/')
+      //}
 
       return (
         <HeaderContainer theme={bgColor}>
           <>
             {isDark ? (
-              <LogoBtn onClick={RouteToHome}>
-                <LogoImg
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                  alt="nxt watch logo"
-                />
-              </LogoBtn>
+              <Link to="/">
+                <LogoBtn>
+                  <LogoImg
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                    alt="website logo"
+                  />
+                </LogoBtn>
+              </Link>
             ) : (
-              <LogoBtn onClick={RouteToHome}>
-                <LogoImg
-                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                  alt="nxt watch logo"
-                />
-              </LogoBtn>
+              <Link to="/">
+                <LogoBtn>
+                  <LogoImg
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                    alt="website logo"
+                  />
+                </LogoBtn>
+              </Link>
             )}
           </>
           <HeaderProfile>
@@ -73,11 +77,19 @@ const Header = props => (
             />
 
             {isDark ? (
-              <ThemeButton type="button" onClick={OnChangeTheme}>
+              <ThemeButton
+                type="button"
+                onClick={OnChangeTheme}
+                data-testid="theme"
+              >
                 <FiSun size={30} color={textColor} />
               </ThemeButton>
             ) : (
-              <ThemeButton type="button" onClick={OnChangeTheme}>
+              <ThemeButton
+                type="button"
+                onClick={OnChangeTheme}
+                data-testid="theme"
+              >
                 <BsMoon size={30} color={textColor} />
               </ThemeButton>
             )}
@@ -99,7 +111,7 @@ const Header = props => (
                   <PopUpContainer>
                     <ModalDesc>
                       <PopUpMessage>
-                        Are you sure you want to logout ?
+                        Are you sure, you want to logout
                       </PopUpMessage>
                     </ModalDesc>
                     <ButtonsCon>

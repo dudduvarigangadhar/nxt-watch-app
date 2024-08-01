@@ -41,6 +41,10 @@ class Gaming extends Component {
     this.getGamingVideos()
   }
 
+  onRetry = () => {
+    this.setState({}, this.getGamingVideos)
+  }
+
   getGamingVideos = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -113,14 +117,16 @@ class Gaming extends Component {
           <GamingFailurePara color={paragraph}>
             Please try again.
           </GamingFailurePara>
-          <GamingRetryButton type="button">Retry</GamingRetryButton>
+          <GamingRetryButton type="button" onClick={this.onRetry}>
+            Retry
+          </GamingRetryButton>
         </GamingFailureContainer>
       </>
     )
   }
 
   renderGamingLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loading">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )

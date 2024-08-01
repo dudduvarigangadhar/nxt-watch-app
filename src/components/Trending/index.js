@@ -78,6 +78,10 @@ class Trending extends Component {
     }
   }
 
+  onRetry = () => {
+    this.setState({}, this.renderTrendingVideos)
+  }
+
   renderFailureView = isDark => {
     const heading = isDark ? '#f9f9f9' : '#1e293b'
     const paragraph = isDark ? '#475569' : '#616e7c'
@@ -104,14 +108,16 @@ class Trending extends Component {
           <TrendingFailurePara color={paragraph}>
             Please try again.
           </TrendingFailurePara>
-          <TrendingRetryButton type="button">Retry</TrendingRetryButton>
+          <TrendingRetryButton type="button" onClick={this.onRetry}>
+            Retry
+          </TrendingRetryButton>
         </TrendingFailureContainer>
       </>
     )
   }
 
   renderLoadingView = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )

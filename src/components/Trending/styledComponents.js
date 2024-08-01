@@ -39,7 +39,7 @@ export const TrendingMidCon = styled.div`
   height: 92vh;
   overflow-y: scroll;
 `
-export const TrendingVideosList = styled.div`
+export const TrendingVideosList = styled.ul`
   //   padding-left: 70px;
   text-decoration: none;
   margin-top: 60px;
@@ -63,7 +63,7 @@ export const TrendingFailureImg = styled.img`
   height: 300px;
 `
 
-export const TrendingFailureHeading = styled.p`
+export const TrendingFailureHeading = styled.h1`
   font-family: 'Roboto';
   font-size: 20px;
   color: ${props => props.color};

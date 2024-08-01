@@ -1,3 +1,4 @@
+import {formatDistanceToNow} from 'date-fns'
 import ThemeContext from '../../Context/ThemeContext'
 
 import {
@@ -14,7 +15,8 @@ import {
 const SaveVideoCard = props => {
   const {details} = props
   const {id, name, publishedAt, thumbnailUrl, title, viewCount} = details
-
+  const date = String(formatDistanceToNow(new Date(publishedAt))).split(' ')
+  const postedOn = date[1]
   return (
     <ThemeContext.Consumer>
       {value => {
@@ -34,7 +36,7 @@ const SaveVideoCard = props => {
                   {viewCount} views{' '}
                 </SavedViewCount>
                 <SavedVideoPublished color={viewColor}>
-                  {'  '}. {publishedAt}
+                  {'  '}. {postedOn}
                 </SavedVideoPublished>
               </ViewsContainer>
             </VideoCardContainer>
