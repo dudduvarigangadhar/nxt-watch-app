@@ -234,7 +234,7 @@ class VideoItemDetails extends Component {
                   controls
                   light={<img src={thumbnailUrl} alt="video thumbnail" />}
                 />
-              </YoutubeVideoContainer>{' '}
+              </YoutubeVideoContainer>
               <Title color={TitleAndName}>{title}</Title>
               <VideoViewsFiled color={viewColor}>
                 <FlexItem>

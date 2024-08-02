@@ -1,5 +1,5 @@
 import {AiFillHome, AiFillFire} from 'react-icons/ai'
-// import {HiFire} from 'react-icons/hi'
+
 import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
 import ThemeContext from '../../Context/ThemeContext'
@@ -54,6 +54,7 @@ const SideBar = () => (
                   size={20}
                   color={activeId === 'HOME' ? '#ff0b37' : '#909090'}
                 />
+
                 <ListPara
                   to="/"
                   color={textColor}
