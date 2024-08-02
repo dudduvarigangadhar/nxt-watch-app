@@ -24,19 +24,19 @@ const SaveVideoCard = props => {
 
         const titleColor = isDark ? '#f1f5f9' : '#1e293b'
         const viewColor = isDark ? '#475569' : '#616e7c'
-
+        const bgColor = isDark ? '#181818' : '#f9f9f9'
         return (
-          <LinkTo to={`/videos/${id}`}>
+          <LinkTo to={`videos/${id}`}>
             <SavedImg src={thumbnailUrl} alt="video thumbnail" />
             <VideoCardContainer>
               <SavedVideoTitle color={titleColor}>{title}</SavedVideoTitle>
               <SavedVideoName color={viewColor}>{name}</SavedVideoName>
               <ViewsContainer>
                 <SavedViewCount color={viewColor}>
-                  {viewCount} views{' '}
+                  {viewCount} views
                 </SavedViewCount>
                 <SavedVideoPublished color={viewColor}>
-                  {'  '}. {postedOn}
+                  {publishedAt}
                 </SavedVideoPublished>
               </ViewsContainer>
             </VideoCardContainer>

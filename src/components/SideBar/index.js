@@ -112,7 +112,7 @@ const SideBar = () => (
                   color={activeId === 'SAVEDVIDEOS' ? '#ff0b37' : '#909090'}
                 />
                 <ListPara
-                  to="/savedVideos"
+                  to="/saved-videos"
                   color={textColor}
                   font={activeId === 'SAVEDVIDEOS' ? 'bold' : 'normal'}
                 >

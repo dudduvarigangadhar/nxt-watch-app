@@ -45,6 +45,7 @@ export const ListItem = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
+  list-style-type: none;
   padding-left: 20px;
   width: 227px;
   background-color: ${props => props.isActive};
@@ -66,6 +67,7 @@ export const UnorderedList = styled.ul`
   width: 230px;
 `
 export const NavLink = styled.div`
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -102,7 +102,8 @@ class Home extends Component {
   }
 
   onRetry = () => {
-    this.setState({}, this.renderHomeVideos)
+    const {searchInput} = this.state
+    this.setState({searchInput}, this.renderHomeVideos)
   }
 
   renderFailureView = isDark => {
@@ -138,7 +139,7 @@ class Home extends Component {
   }
 
   renderLoadingView = () => (
-    <HomeLoadingView className="loader-container">
+    <HomeLoadingView className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </HomeLoadingView>
   )
@@ -161,7 +162,7 @@ class Home extends Component {
           <NoResultsContainer>
             <NoResultsImg
               src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-              alt="no search results"
+              alt="no videos"
             />
             <NoResultHeading color={resultHeading}>
               No Search results found
@@ -231,8 +232,8 @@ class Home extends Component {
                 <SideBar />
 
                 <HomeVideoDivContainer>
-                  <BannerDivContainer display={display} data-testid="banner">
-                    <BannerContainer>
+                  <BannerDivContainer display={display}>
+                    <BannerContainer data-testid="banner">
                       <BannerOfferContainer>
                         <BannerImg
                           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
@@ -243,19 +244,15 @@ class Home extends Component {
                         </BannerHeading>
                         <BannerBtn type="button">GET IT NOW</BannerBtn>
                       </BannerOfferContainer>
-                      <CloseContainer>
-                        <IoIosClose
-                          size={30}
-                          onClick={this.RemoveBanner}
-                          data-testid="close"
-                        />
+                      <CloseContainer data-testid="close">
+                        <IoIosClose size={30} onClick={this.RemoveBanner} />
                       </CloseContainer>
                     </BannerContainer>
                   </BannerDivContainer>
                   <HomeVideosContainer>
                     <SearchContainer>
                       <SearchInput
-                        type="text"
+                        type="search"
                         placeholder="Search"
                         inColor={bgColor}
                         borderColor={isDark ? '#7e858e' : '#ebebeb'}
@@ -263,6 +260,7 @@ class Home extends Component {
                         value={searchInput}
                       />
                       <SearchButton
+                        type="button"
                         data-testid="searchButton"
                         btnColor={isDark ? '#383838' : '#f4f4f4'}
                         borderColor={isDark ? '#7e858e' : '#ebebeb'}

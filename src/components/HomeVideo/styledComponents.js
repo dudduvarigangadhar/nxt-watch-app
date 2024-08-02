@@ -68,7 +68,8 @@ export const PublishedDiv = styled.div`
   flex-direction: row;
   text-decoration: none;
 `
-export const VideosId = styled.div`
+export const VideosId = styled.li`
+  list-style-type: none;
   //   margin-bottom: 20px;
   //   margin-right: 20px;
   margin-right: 10px;

@@ -249,9 +249,13 @@ class VideoItemDetails extends Component {
                     </Button>
                     {/* <VideoItemPara color={likeClass}></VideoItemPara> */}
                   </FlexItemContainer>
-                  <FlexItemContainer onClick={this.onClickDisLikeButton}>
+                  <FlexItemContainer>
                     <IconCon> {dislikeIcon}</IconCon>
-                    <Button type="button" color={dislikeClass}>
+                    <Button
+                      type="button"
+                      color={dislikeClass}
+                      onClick={this.onClickDisLikeButton}
+                    >
                       Dislike
                     </Button>
                     {/* //<VideoItemPara color={dislikeClass}></VideoItemPara> */}

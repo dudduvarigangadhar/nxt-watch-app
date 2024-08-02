@@ -10,6 +10,7 @@ export const LinkTo = styled(Link)`
   padding-left: 30px;
   padding-top: 30px;
   cursor: pointer;
+  background-color: ${props => props.color};
 `
 export const ViewsContainer = styled.div`
   display: flex;
