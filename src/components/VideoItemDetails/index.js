@@ -38,6 +38,7 @@ import {
   VideoItemDetailsFailurePara,
   VideoItemDetailsFailureRetryBtn,
   VideoItemDetailsBlock,
+  IconCon,
 } from './styledComponents'
 
 const apiStatusConstants = {
@@ -242,30 +243,35 @@ class VideoItemDetails extends Component {
                 </FlexItem>
                 <VideoLikeFiled>
                   <FlexItemContainer onClick={this.onClickLikeButton}>
+                    <IconCon>{likeIcon}</IconCon>
                     <Button type="button" color={likeClass}>
-                      {likeIcon}
+                      Like
                     </Button>
-                    <VideoItemPara color={likeClass}>Like</VideoItemPara>
+                    {/* <VideoItemPara color={likeClass}></VideoItemPara> */}
                   </FlexItemContainer>
                   <FlexItemContainer onClick={this.onClickDisLikeButton}>
+                    <IconCon> {dislikeIcon}</IconCon>
                     <Button type="button" color={dislikeClass}>
-                      {dislikeIcon}
+                      Dislike
                     </Button>
-                    <VideoItemPara color={dislikeClass}>DisLike</VideoItemPara>
+                    {/* //<VideoItemPara color={dislikeClass}></VideoItemPara> */}
                   </FlexItemContainer>
                   <FlexItemContainer onClick={saveVideo}>
-                    <Button type="button" color={saveIconColor}>
+                    <IconCon>
                       <BiListPlus size={20} />
-                    </Button>
-                    <VideoItemPara color={saveIconColor}>
+                    </IconCon>
+                    <Button type="button" color={saveIconColor}>
                       {isSaved ? 'Saved' : 'Save'}
-                    </VideoItemPara>
+                    </Button>
+                    {/* <VideoItemPara color={saveIconColor}>
+                     
+                    </VideoItemPara> */}
                   </FlexItemContainer>
                 </VideoLikeFiled>
               </VideoViewsFiled>
               <hr />
               <YoutubeChannelContainer>
-                <ProfileImg src={profileImageUrl} alt="website logo" />
+                <ProfileImg src={profileImageUrl} alt="channel logo" />
                 <DescriptionContainer>
                   <div>
                     <Name color={TitleAndName}>{name}</Name>
@@ -286,7 +292,7 @@ class VideoItemDetails extends Component {
   }
 
   renderVideosItemsLoading = () => (
-    <div className="loader-container">
+    <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )

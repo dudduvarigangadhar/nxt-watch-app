@@ -6,6 +6,8 @@ export const VideoItemContainer = styled.div`
   height: 92vh;
 `
 
+export const IconCon = styled.div``
+
 export const VideoItemDetailsBlock = styled.div`
   background-color: ${props => props.color};
 `

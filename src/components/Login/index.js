@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 
 import {
   LoginContainer,
@@ -69,6 +70,10 @@ class Login extends Component {
   }
 
   render() {
+    const user = Cookies.get('jwt_token')
+    if (user !== undefined) {
+      return <Redirect to="/" />
+    }
     const {
       theme,
       username,
@@ -107,8 +112,15 @@ class Login extends Component {
               value={password}
             />
             <ShowPassword>
-              <CheckInput type="checkbox" onChange={this.onChangeCheck} />
-              <CustomCheckLabel>Show Password</CustomCheckLabel>
+              <CheckInput
+                id="show password"
+                type="checkbox"
+                onClick={this.onChangeCheck}
+              />
+              <CustomCheckLabel htmlFor="show password">
+                {' '}
+                Show Password
+              </CustomCheckLabel>
             </ShowPassword>
             <LoginButton type="submit">Login</LoginButton>
             {showErrorMsg && <ErrorMsg>*{errorMsg}</ErrorMsg>}

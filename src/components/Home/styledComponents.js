@@ -66,8 +66,10 @@ export const RenderView = styled.div`
   //   overflow-y: scroll;
 `
 
-export const CloseContainer = styled.div`
+export const CloseContainer = styled.button`
   margin-left: 40%;
+  background-color: transparent;
+  border: 0px;
   //   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   //   background-size: cover;
   //   height: 30%;

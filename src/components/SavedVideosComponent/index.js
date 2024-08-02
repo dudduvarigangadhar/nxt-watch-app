@@ -29,21 +29,21 @@ const SavedVideosComponent = () => (
       const bgColor = isDark ? '#0f0f0f' : '#f9f9f9'
       console.log(savedVideos)
       return (
-        <SavedVideoRouteContainer color={bgColor} data-testid="savedVideos">
+        <SavedVideoRouteContainer>
           <Header />
-          <SavedVideosContainer>
+          <SavedVideosContainer color={bgColor} data-testid="savedVideos">
             <SideBar />
             {savedVideos.length === 0 ? (
               <NoSavedVideosContainer>
                 <NoSavedVideoImg
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
-                  alt="no saved videos"
+                  alt="No Saved videos"
                 />
                 <NoVideosHeading color={heading}>
                   No saved videos found
                 </NoVideosHeading>
                 <NoVideosParagraph color={paragraph}>
-                  You can save your videos while watching them
+                  Save your videos by clicking a button
                 </NoVideosParagraph>
               </NoSavedVideosContainer>
             ) : (

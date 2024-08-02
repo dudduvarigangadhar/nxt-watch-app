@@ -57,7 +57,7 @@ export const SavedVideosDivContainer = styled.div`
   height: 90vh;
   overflow-y: scroll;
 `
-export const SavedContainer = styled.div`
+export const SavedContainer = styled.ul`
   //   overflow-y: scroll;
 `
 export const SavedVideoRouteContainer = styled.div`

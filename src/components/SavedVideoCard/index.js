@@ -27,7 +27,7 @@ const SaveVideoCard = props => {
 
         return (
           <LinkTo to={`/videos/${id}`}>
-            <SavedImg src={thumbnailUrl} alt="profile" />
+            <SavedImg src={thumbnailUrl} alt="video thumbnail" />
             <VideoCardContainer>
               <SavedVideoTitle color={titleColor}>{title}</SavedVideoTitle>
               <SavedVideoName color={viewColor}>{name}</SavedVideoName>

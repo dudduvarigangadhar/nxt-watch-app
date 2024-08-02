@@ -116,8 +116,7 @@ const SideBar = () => (
                   color={textColor}
                   font={activeId === 'SAVEDVIDEOS' ? 'bold' : 'normal'}
                 >
-                  {' '}
-                  Saved Videos{' '}
+                  Saved Videos
                 </ListPara>
               </NavLink>
             </ListItem>

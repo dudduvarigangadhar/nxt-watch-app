@@ -207,7 +207,7 @@ class Home extends Component {
       {
         display: 'none',
       },
-      this.renderHomeVideos,
+      //   this.renderHomeVideos,
     )
   }
 
@@ -223,7 +223,7 @@ class Home extends Component {
           const textColor = isDark ? '#f9f9f9' : ' #181818'
 
           const bgColor = isDark ? '#181818' : '#f9f9f9'
-          console.log('banner', display)
+
           return (
             <HomeContainer data-testid="home" theme={bgColor}>
               <Header />
@@ -239,7 +239,7 @@ class Home extends Component {
                           alt="nxt watch logo"
                         />
                         <BannerHeading>
-                          Buy Nxt Watch Premium prepaid plans with UPI
+                          Buy Nxt Watch Premium prepaid plans with <br /> UPI
                         </BannerHeading>
                         <BannerBtn type="button">GET IT NOW</BannerBtn>
                       </BannerOfferContainer>
